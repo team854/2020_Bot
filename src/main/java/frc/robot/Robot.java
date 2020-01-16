@@ -17,6 +17,7 @@ import frc.robot.subsystems.CanDriveSubsystem;
 import frc.robot.subsystems.ControlPanelSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.PowerSubsystem;
+import frc.robot.subsystems.BallSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,6 +35,7 @@ public class Robot extends TimedRobot {
     public static final PowerSubsystem          powerSubsystem          = new PowerSubsystem();
     public static final CameraSubsystem         cameraSubsystem         = new CameraSubsystem();
     public static final ControlPanelSubsystem   controlPanelSubsystem   = new ControlPanelSubsystem();
+    public static final BallSubsystem           ballSubsystem           = new BallSubsystem();
 
     public static OI                            oi;
 
@@ -46,6 +48,7 @@ public class Robot extends TimedRobot {
         subsystemLs.add(powerSubsystem);
         subsystemLs.add(cameraSubsystem);
         subsystemLs.add(controlPanelSubsystem);
+        subsystemLs.add(ballSubsystem);
     }
 
     /**
