@@ -77,6 +77,7 @@ public class BallSubsystem extends TSubsystem {
     public void updatePeriodic() {
         // TODO: Put stuff here??
         //SmartDashboard
+        SmartDashboard.putNumber("Cord Speed", getIntakeCordsSpeed());
     }
 
 }
