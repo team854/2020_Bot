@@ -24,23 +24,6 @@ public class BallSubsystem extends TSubsystem {
         setDefaultCommand(new DefaultBallCommand());
     }
 
-    /*public void setIntakeState(boolean state) {
-        // True means start intaking, False means stop
-        // TODO: All motor speeds are dummy values - they will need to be adjusted
-        //       Some should be made negative, for some 1 is too fast
-
-        if (state) {
-            setOutakeSpeed(-1);  // Outake motors spin backwards while intaking
-            setIntakeDeploySpeed(1);
-            setIntakeWheelsSpeed(1);
-            setIntakeCordsSpeed(1);
-        } else {
-            setIntakeDeploySpeed(-1);
-            setIntakeWheelsSpeed(0);
-            setIntakeCordsSpeed(0);
-        }
-    }*/
-
     public void setIntakeWheelsSpeed(double speed) {
         intakeWheels.set(speed);
     }

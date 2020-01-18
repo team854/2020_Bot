@@ -87,6 +87,20 @@ public class TGameController_Logitech extends TGameController {
         }
     }
 
+    @Override  // TODO: Copied, should be tested
+    public boolean getButton(TTrigger trigger) {
+
+        switch (trigger) {
+        case LEFT:
+            return getFilteredRawAxis(2) > 0.3;
+        case RIGHT:
+            return getFilteredRawAxis(3) > 0.3;
+
+        default:
+            return false;
+        }
+    }
+
     @Override
     protected String getButtonString() {
 

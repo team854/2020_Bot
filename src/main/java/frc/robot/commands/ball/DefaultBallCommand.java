@@ -30,7 +30,15 @@ public class DefaultBallCommand extends TSafeCommand {
 
     @Override
     protected void execute() {
-        // TODO: Add stuff here after adding OI code
+        
+        if (Robot.oi.getIntakeDeploy()) {
+            // TODO: All motor speeds are dummy values - they will need to be adjusted
+            Robot.ballSubsystem.setIntakeDeploySpeed(1);
+        } else {
+            Robot.ballSubsystem.setIntakeDeploySpeed(-1);
+        }
+        setIntakeState(Robot.oi.getIntakeDeploy());
+        setOutakeState(Robot.oi.getOutake());
     }
 
     protected void setIntakeState(boolean state) {
@@ -43,11 +51,9 @@ public class DefaultBallCommand extends TSafeCommand {
         if (state) {
             setOutakeState(false);  // Can't intake and outake at the same time
             Robot.ballSubsystem.setOutakeSpeed(-1);  // Outake motors spin backwards while intaking
-            Robot.ballSubsystem.setIntakeDeploySpeed(1);
             Robot.ballSubsystem.setIntakeWheelsSpeed(1);
             Robot.ballSubsystem.setIntakeCordsSpeed(1);
         } else {
-            Robot.ballSubsystem.setIntakeDeploySpeed(-1);
             Robot.ballSubsystem.setIntakeWheelsSpeed(0);
             Robot.ballSubsystem.setIntakeCordsSpeed(0);
             Robot.ballSubsystem.setOutakeSpeed(0);

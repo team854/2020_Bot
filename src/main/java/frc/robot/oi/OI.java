@@ -8,6 +8,7 @@ import com.torontocodingcollective.oi.TRumbleManager;
 import com.torontocodingcollective.oi.TStick;
 import com.torontocodingcollective.oi.TStickPosition;
 import com.torontocodingcollective.oi.TToggle;
+import com.torontocodingcollective.oi.TTrigger;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -32,13 +33,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class OI extends TOi {
 
-    private TGameController driverController = new TGameController_Logitech(0);
-    private TRumbleManager  driverRumble     = new TRumbleManager("Driver", driverController);
+    private TGameController driverController    = new TGameController_Logitech(0);
+    private TRumbleManager  driverRumble        = new TRumbleManager("Driver", driverController);
 
-    private TToggle         compressorToggle = new TToggle(driverController, TStick.LEFT);
-    private TToggle         speedPidToggle   = new TToggle(driverController, TStick.RIGHT);
+    private TGameController operatorController  = new TGameController_Logitech(1);
+    private TRumbleManager  operatorRumble      = new TRumbleManager("Operator", operatorController);
 
-    private DriveSelector   driveSelector    = new DriveSelector();
+    private TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
+    private TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
+
+    private DriveSelector   driveSelector       = new DriveSelector();
+
+    // BallCommand stuff
+    private TToggle         intakeDeploy        = new TToggle(operatorController, TButton.RIGHT_BUMPER);
+
+    // Climb
+
 
     @Override
     public boolean getCancelCommand() {
@@ -102,6 +112,33 @@ public class OI extends TOi {
         speedPidToggle.set(state);
     }
 
+    public boolean getIntakeDeploy() {
+        // True is deployed, or should be
+        return intakeDeploy.get();
+    }
+
+    public boolean getIntakeBall() {
+        // True means intaking
+        return operatorController.getButton(TTrigger.RIGHT);
+    }
+
+    public boolean getOutake() {
+        // True means outake
+        return operatorController.getButton(TTrigger.LEFT);
+    }
+
+    public boolean getHookUp() {
+        return driverController.getButton(TTrigger.RIGHT);
+    }
+
+    public boolean getHookDown() {
+        return driverController.getButton(TButton.RIGHT_BUMPER);
+    }
+
+    public boolean getWinchDown() {
+        return driverController.getButton(TTrigger.LEFT);
+    }
+
     @Override
     public void updatePeriodic() {
 
@@ -109,6 +146,8 @@ public class OI extends TOi {
         compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
         driverRumble.updatePeriodic();
+        operatorRumble.updatePeriodic();
+        intakeDeploy.updatePeriodic();
 
         // Update all SmartDashboard values
         SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());
