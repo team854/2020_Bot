@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
-import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
-import com.torontocodingcollective.speedcontroller.TPwmSpeedController.TPwmSpeedControllerType;
+import com.torontocodingcollective.speedcontroller.TCanSpeedController;
+import com.torontocodingcollective.speedcontroller.TCanSpeedController.TCanSpeedControllerType;
 import com.torontocodingcollective.subsystem.TSubsystem;
 import frc.robot.commands.ball.DefaultBallCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -10,11 +10,10 @@ public class BallSubsystem extends TSubsystem {
 
     // All the speed controllers are fake, and assumed to be using PWM
     // The real values should be put in RobotMap.java afterward
-
-    private TPwmSpeedController intakeWheels =  new TPwmSpeedController(TPwmSpeedControllerType.SPARK, 0, false);
-    private TPwmSpeedController intakeDeploy =  new TPwmSpeedController(TPwmSpeedControllerType.SPARK, 0, false);
-    private TPwmSpeedController intakeCords  =  new TPwmSpeedController(TPwmSpeedControllerType.SPARK, 0, false);
-    private TPwmSpeedController outake =        new TPwmSpeedController(TPwmSpeedControllerType.SPARK, 0, false);
+    private TCanSpeedController intakeWheels = new TCanSpeedController(TCanSpeedControllerType.TALON_SRX, 0, false);
+    private TCanSpeedController intakeDeploy = new TCanSpeedController(TCanSpeedControllerType.TALON_SRX, 0, false);
+    private TCanSpeedController intakeCords  = new TCanSpeedController(TCanSpeedControllerType.TALON_SRX, 0, false);
+    private TCanSpeedController outake       = new TCanSpeedController(TCanSpeedControllerType.TALON_SRX, 0, false);
 
     @Override
     public void init() {}

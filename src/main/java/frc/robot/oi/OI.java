@@ -47,9 +47,6 @@ public class OI extends TOi {
     // BallCommand stuff
     private TToggle         intakeDeploy        = new TToggle(operatorController, TButton.RIGHT_BUMPER);
 
-    // Climb
-
-
     @Override
     public boolean getCancelCommand() {
         return driverController.getButton(TButton.BACK);
@@ -137,6 +134,14 @@ public class OI extends TOi {
 
     public boolean getWinchDown() {
         return driverController.getButton(TTrigger.LEFT);
+    }
+
+    public boolean getCPSpinTimes() {
+        return operatorController.getButton(TButton.Y);
+    }
+
+    public boolean getCPColorSpin() {
+        return operatorController.getButton(TButton.B);
     }
 
     @Override

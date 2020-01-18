@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
 import com.torontocodingcollective.speedcontroller.TPwmSpeedController.TPwmSpeedControllerType;
 import com.torontocodingcollective.subsystem.TSubsystem;
+import frc.robot.commands.climb.DefaultClimbCommand;
 
 public class ClimbSubsystem extends TSubsystem {
 
@@ -14,7 +15,7 @@ public class ClimbSubsystem extends TSubsystem {
 
     @Override
     protected void initDefaultCommand() {
-        //setDefaultCommand(new DefaultClimbCommand());
+        setDefaultCommand(new DefaultClimbCommand());
     }
 
     public void setDeploySpeed(double speed) {

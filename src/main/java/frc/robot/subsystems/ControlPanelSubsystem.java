@@ -3,12 +3,16 @@ package frc.robot.subsystems;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
+import com.torontocodingcollective.sensors.encoder.TDioCounterEncoder;
+import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
+import com.torontocodingcollective.speedcontroller.TPwmSpeedController.TPwmSpeedControllerType;
 import com.torontocodingcollective.subsystem.TSubsystem;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
+import frc.robot.commands.controlpanel.DefaultControlPanelCommand;
 
 /**
  *
@@ -22,8 +26,10 @@ public class ControlPanelSubsystem extends TSubsystem {
      * parameters.
      */
     private final ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+    private final ColorMatch    colorMatcher = new ColorMatch();
 
-    private final ColorMatch colorMatcher = new ColorMatch();
+    // TODO: Add vars for ports, encoder and pwm types are fake
+    private TPwmSpeedController motor   = new TPwmSpeedController(TPwmSpeedControllerType.SPARK, 0, false);
 
     public static final Color BLUE_TARGET = ColorMatch.makeColor(0.143, 0.427, 0.429);
     public static final Color GREEN_TARGET = ColorMatch.makeColor(0.197, 0.561, 0.240);
@@ -40,6 +46,7 @@ public class ControlPanelSubsystem extends TSubsystem {
 
     @Override
     protected void initDefaultCommand() {
+        setDefaultCommand(new DefaultControlPanelCommand());
     }
 
     @Override
@@ -113,6 +120,14 @@ public class ControlPanelSubsystem extends TSubsystem {
         } else {
             return UNKNOWN_TARGET;
         }
+    }
+
+    public double getMotorSpeed() {
+        return motor.get();
+    }
+
+    public void setMotorSpeed(double speed) {
+        motor.set(speed);
     }
 
     // Periodically update the dashboard and any PIDs or sensors
