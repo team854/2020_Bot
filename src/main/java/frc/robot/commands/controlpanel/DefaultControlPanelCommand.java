@@ -13,14 +13,13 @@ public class DefaultControlPanelCommand extends TSafeCommand {
     private static final    String  COMMAND_NAME =   DefaultControlPanelCommand.class.getSimpleName();
 
     // State vars
-    private Color   startColor;
     private boolean spinRoutine     = false;    // Are we trying to spin a number of times right now?
-    private boolean colourRoutine   = false;
+    private boolean colorRoutine    = false;
     private Color   curColor;
     private Color   prevColor;
     private int     numColors       = -1;       // No colours have been counted yet
     private Color   gameColor;                  // Color from the field (FMS)
-    private Color   targetColor;                // Actual color we want to go to
+    private Color   targetColor;                // Actual color we want to go to, based on where our sensor is
 
     public DefaultControlPanelCommand() {
         super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
@@ -42,16 +41,15 @@ public class DefaultControlPanelCommand extends TSafeCommand {
 
     @Override
     protected void execute() {
-        // TODO: Write loops for spinning and detecting colour that keep track of state
         // TODO: Motor values are dummy - should rotate less than 60 rpm
 
         // Start spin routine
-        if (Robot.oi.getCPSpinTimes() && spinRoutine == false && colourRoutine == false) {
+        if (Robot.oi.getCPSpinTimes() && spinRoutine == false && colorRoutine == false) {
             spinRoutine = true;
-            startColor  = Robot.controlPanelSubsystem.getColorSensorColor();
-            prevColor   = startColor;
+            prevColor   = Robot.controlPanelSubsystem.getColorSensorColor();
             numColors   = 0;  // First color
             Robot.controlPanelSubsystem.setMotorSpeed(1);
+            return;
         }
 
         // Spin routine is happening
@@ -62,10 +60,8 @@ public class DefaultControlPanelCommand extends TSafeCommand {
                 spinRoutine = false;
                 return;
             }
-
             curColor = Robot.controlPanelSubsystem.getColorSensorColor();
-
-            // Check for new color, but not the same block as the start
+            // Check for a new color
             if (curColor != prevColor) {
                 numColors++;
                 prevColor = curColor;
@@ -74,11 +70,32 @@ public class DefaultControlPanelCommand extends TSafeCommand {
             }
         }
 
-        // Start color routine - check that there is actually data
-        if (Robot.oi.getCPColorSpin() && spinRoutine == false && colourRoutine == false 
+        // Start color routine - check that there is actually data from the FMS
+        if (Robot.oi.getCPColorSpin() && spinRoutine == false && colorRoutine == false 
             && Robot.controlPanelSubsystem.getSpecifiedTargetColor() != ControlPanelSubsystem.UNKNOWN_TARGET) {
-                // set targetColor based on gameColor
+            
+            colorRoutine = true;
+            // Set targetColor based on gameColor
+            gameColor = Robot.controlPanelSubsystem.getSpecifiedTargetColor();
+            if (gameColor == ControlPanelSubsystem.BLUE_TARGET) {
+                targetColor = ControlPanelSubsystem.RED_TARGET;
+            } else if (gameColor == ControlPanelSubsystem.GREEN_TARGET) {
+                targetColor = ControlPanelSubsystem.YELLOW_TARGET;
+            } else if (gameColor == ControlPanelSubsystem.RED_TARGET) {
+                targetColor = ControlPanelSubsystem.BLUE_TARGET;
+            } else if (gameColor == ControlPanelSubsystem.YELLOW_TARGET) {
+                targetColor = ControlPanelSubsystem.GREEN_TARGET;
             }
+            Robot.controlPanelSubsystem.setMotorSpeed(1);
+            return;
+        }
+        
+        // Color routine is done
+        if (colorRoutine == true && targetColor == Robot.controlPanelSubsystem.getColorSensorColor()) {
+            Robot.controlPanelSubsystem.setMotorSpeed(0);
+            colorRoutine = false;
+            return;
+        }
     }
 
     @Override

@@ -133,11 +133,11 @@ public class ControlPanelSubsystem extends TSubsystem {
     // Periodically update the dashboard and any PIDs or sensors
     @Override
     public void updatePeriodic() {
-
         SmartDashboard.putString("Color Sensor Color", getColorName(getColorSensorColor()));
         SmartDashboard.putString("Specified Target Color", getColorName(getSpecifiedTargetColor()));
         SmartDashboard.putString("Color Sensor(R, G, B)", "" + colorSensor.getRed() + ", "
                 + colorSensor.getGreen() + ", " + colorSensor.getBlue());
+        SmartDashboard.putBoolean("Color Found", getColorSensorColor() == getSpecifiedTargetColor());
     }
 
 }
