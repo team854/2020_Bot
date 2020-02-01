@@ -40,7 +40,6 @@ public class Robot extends TimedRobot {
     public static final BallSubsystem           ballSubsystem           = new BallSubsystem();
     public static final ClimbSubsystem          climbSubsystem          = new ClimbSubsystem();
 
-    // TODO: Remove after testing
     public static final CanDriveTestSubsystem   canDriveTestSubsystem   = new CanDriveTestSubsystem();
 
     public static OI                            oi;
@@ -49,14 +48,14 @@ public class Robot extends TimedRobot {
 
     // Add all of the subsystems to the subsystem list
     static {
-        //subsystemLs.add(driveSubsystem);  Removed to use CanDriveTestSubsystem instead
+        subsystemLs.add(driveSubsystem);
         subsystemLs.add(pneumaticsSubsystem);
         subsystemLs.add(powerSubsystem);
         subsystemLs.add(cameraSubsystem);
         subsystemLs.add(controlPanelSubsystem);
         subsystemLs.add(ballSubsystem);
         subsystemLs.add(climbSubsystem);
-        subsystemLs.add(canDriveTestSubsystem);
+        //subsystemLs.add(canDriveTestSubsystem);
     }
 
     /**
