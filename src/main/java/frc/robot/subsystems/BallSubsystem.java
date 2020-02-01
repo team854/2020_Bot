@@ -13,7 +13,7 @@ public class BallSubsystem extends TSubsystem {
     private TPwmSpeedController intakeWheels = new TPwmSpeedController(
                                                         RobotMap.INTAKE_WHEELS_PWM_SPEED_CONTROLLER_TYPE,
                                                         RobotMap.INTAKE_WHEELS_PWM_SPEED_CONTROLLER_ADDRESS,
-                                                        RobotMap.INTAKE_WHEELS_PWM_MOTOR_ISINVERTED;
+                                                        RobotMap.INTAKE_WHEELS_PWM_MOTOR_ISINVERTED
                                                     );
     private TPwmSpeedController intakeDeploy = new TPwmSpeedController(
                                                         RobotMap.INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_TYPE,
