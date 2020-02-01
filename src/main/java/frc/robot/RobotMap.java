@@ -17,18 +17,22 @@ public class RobotMap {
 
     // ******************************************
     // Speed Controllers and encoders
-    // CAN addresses
+    // CAN addresses - three motors per side
     // ******************************************
     public static final int                     LEFT_DRIVE_CAN_SPEED_CONTROLLER_ADDRESS;
     public static final TCanSpeedControllerType LEFT_DRIVE_CAN_SPEED_CONTROLLER_TYPE;
     public static final int                     LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_ADDRESS;
     public static final TCanSpeedControllerType LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE;
+    public static final int                     LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS;
+    public static final TCanSpeedControllerType LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_TYPE;
     public static final boolean                 LEFT_DRIVE_CAN_MOTOR_ISINVERTED;
 
     public static final int                     RIGHT_DRIVE_CAN_SPEED_CONTROLLER_ADDRESS;
     public static final TCanSpeedControllerType RIGHT_DRIVE_CAN_SPEED_CONTROLLER_TYPE;
     public static final int                     RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_ADDRESS;
     public static final TCanSpeedControllerType RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE;
+    public static final int                     RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS;
+    public static final TCanSpeedControllerType RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_TYPE;
     public static final boolean                 RIGHT_DRIVE_CAN_MOTOR_ISINVERTED;
 
     public static final boolean                 LEFT_DRIVE_CAN_ENCODER_ISINVERTED;
@@ -83,6 +87,8 @@ public class RobotMap {
             LEFT_DRIVE_CAN_SPEED_CONTROLLER_TYPE              = TCanSpeedControllerType.TALON_SRX;
             LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_ADDRESS  = 11;
             LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE     = TCanSpeedControllerType.VICTOR_SPX;
+            LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS = 0;
+            LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_TYPE   = TCanSpeedControllerType.TALON_SRX;
             LEFT_DRIVE_CAN_MOTOR_ISINVERTED                   = TConst.INVERTED;
             LEFT_DRIVE_CAN_ENCODER_ISINVERTED                 = TConst.INVERTED;
 
@@ -90,6 +96,8 @@ public class RobotMap {
             RIGHT_DRIVE_CAN_SPEED_CONTROLLER_TYPE             = TCanSpeedControllerType.TALON_SRX;
             RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_ADDRESS = 21;
             RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE    = TCanSpeedControllerType.TALON_SRX;
+            RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS = 0;
+            RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_TYPE  = TCanSpeedControllerType.TALON_SRX;
             RIGHT_DRIVE_CAN_MOTOR_ISINVERTED                  = TConst.NOT_INVERTED;
             RIGHT_DRIVE_CAN_ENCODER_ISINVERTED                = TConst.NOT_INVERTED;
 
@@ -147,6 +155,8 @@ public class RobotMap {
             LEFT_DRIVE_CAN_SPEED_CONTROLLER_TYPE              = TCanSpeedControllerType.TALON_SRX;
             LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_ADDRESS  = 1;
             LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE     = TCanSpeedControllerType.VICTOR_SPX;
+            LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS = 0;
+            LEFT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_TYPE   = TCanSpeedControllerType.TALON_SRX;
             LEFT_DRIVE_CAN_MOTOR_ISINVERTED                   = TConst.NOT_INVERTED;
             LEFT_DRIVE_CAN_ENCODER_ISINVERTED                 = TConst.INVERTED;
 
@@ -154,6 +164,8 @@ public class RobotMap {
             RIGHT_DRIVE_CAN_SPEED_CONTROLLER_TYPE             = TCanSpeedControllerType.TALON_SRX;
             RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_ADDRESS = 3;
             RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_TYPE    = TCanSpeedControllerType.VICTOR_SPX;
+            RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS = 0;
+            RIGHT_DRIVE_CAN_FOLLOWER_SPEED_CONTROLLER_2_TYPE  = TCanSpeedControllerType.TALON_SRX;
             RIGHT_DRIVE_CAN_MOTOR_ISINVERTED                  = TConst.INVERTED;
             RIGHT_DRIVE_CAN_ENCODER_ISINVERTED                = TConst.NOT_INVERTED;
 

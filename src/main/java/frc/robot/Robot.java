@@ -14,6 +14,7 @@ import frc.robot.oi.AutoSelector;
 import frc.robot.oi.OI;
 import frc.robot.subsystems.CameraSubsystem;
 import frc.robot.subsystems.CanDriveSubsystem;
+import frc.robot.subsystems.CanDriveTestSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.ControlPanelSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
@@ -37,7 +38,10 @@ public class Robot extends TimedRobot {
     public static final CameraSubsystem         cameraSubsystem         = new CameraSubsystem();
     public static final ControlPanelSubsystem   controlPanelSubsystem   = new ControlPanelSubsystem();
     public static final BallSubsystem           ballSubsystem           = new BallSubsystem();
-    public static final ClimbSubsystem          climbSubsystem          = new ClimbSubsystem(); 
+    public static final ClimbSubsystem          climbSubsystem          = new ClimbSubsystem();
+
+    // TODO: Remove after testing
+    public static final CanDriveTestSubsystem   canDriveTestSubsystem   = new CanDriveTestSubsystem();
 
     public static OI                            oi;
 
@@ -45,13 +49,14 @@ public class Robot extends TimedRobot {
 
     // Add all of the subsystems to the subsystem list
     static {
-        subsystemLs.add(driveSubsystem);
+        //subsystemLs.add(driveSubsystem);  Removed to use CanDriveTestSubsystem instead
         subsystemLs.add(pneumaticsSubsystem);
         subsystemLs.add(powerSubsystem);
         subsystemLs.add(cameraSubsystem);
         subsystemLs.add(controlPanelSubsystem);
         subsystemLs.add(ballSubsystem);
         subsystemLs.add(climbSubsystem);
+        subsystemLs.add(canDriveTestSubsystem);
     }
 
     /**
