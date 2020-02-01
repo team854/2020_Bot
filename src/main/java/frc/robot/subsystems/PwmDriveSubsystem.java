@@ -28,17 +28,17 @@ public class PwmDriveSubsystem extends TGyroDriveSubsystem {
                 new TPwmSpeedController(
                         RobotMap.LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE,
                         RobotMap.LEFT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS,
-                        RobotMap.LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE,
+                        RobotMap.LEFT_DRIVE_PWM_MOTOR_ISINVERTED,
                         RobotMap.LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS,
-                        RobotMap.LEFT_DRIVE_PWM_MOTOR_ISINVERTED),
+                        RobotMap.LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS),
 
                 // Right Speed Controller
                 new TPwmSpeedController(
                         RobotMap.RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE,
                         RobotMap.RIGHT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS,
-                        RobotMap.RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE,
+                        RobotMap.RIGHT_DRIVE_PWM_MOTOR_ISINVERTED,
                         RobotMap.RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS,
-                        RobotMap.RIGHT_DRIVE_PWM_MOTOR_ISINVERTED),
+                        RobotMap.RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS),
 
                 // Left Encoder
                 new TDioQuadEncoder(

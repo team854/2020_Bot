@@ -17,7 +17,7 @@ public class RobotMap {
 
     // ******************************************
     // Speed Controllers and encoders
-    // CAN addresses - three motors per side
+    // CAN addresses - three motors per side - NOT USED THIS YEAR
     // ******************************************
     public static final int                     LEFT_DRIVE_CAN_SPEED_CONTROLLER_ADDRESS;
     public static final TCanSpeedControllerType LEFT_DRIVE_CAN_SPEED_CONTROLLER_TYPE;
@@ -39,24 +39,46 @@ public class RobotMap {
     public static final boolean                 RIGHT_DRIVE_CAN_ENCODER_ISINVERTED;
 
     // ******************************************
-    // PWM addresses
+    // PWM addresses - three motors per side
     // ******************************************
     public static final int                     LEFT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE;
     public static final int                     LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE;
+    public static final int                     LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS;
+    public static final TPwmSpeedControllerType LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_TYPE;
     public static final boolean                 LEFT_DRIVE_PWM_MOTOR_ISINVERTED;
 
     public static final int                     RIGHT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE;
     public static final int                     RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE;
+    public static final int                     RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS;
+    public static final TPwmSpeedControllerType RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_TYPE;
     public static final boolean                 RIGHT_DRIVE_PWM_MOTOR_ISINVERTED;
 
     public static final int                     LEFT_DRIVE_DIO_ENCODER_PORT1;
     public static final boolean                 LEFT_DRIVE_DIO_ENCODER_ISINVERTED;
     public static final int                     RIGHT_DRIVE_DIO_ENCODER_PORT1;
     public static final boolean                 RIGHT_DRIVE_DIO_ENCODER_ISINVERTED;
+
+    public static final int                     CONTROL_PANEL_PWM_SPEED_CONTROLLER_ADDRESS;
+    public static final TPwmSpeedControllerType CONTROL_PANEL_PWM_SPEED_CONTROLLER_TYPE;
+    
+    // PWM for BallSubsystem (intake)
+    public static final int                     INTAKE_WHEELS_PWM_SPEED_CONTROLLER_ADDRESS;
+    public static final TPwmSpeedControllerType INTAKE_WHEELS_PWM_SPEED_CONTROLLER_TYPE;
+    public static final int                     INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS;
+    public static final TPwmSpeedControllerType INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_TYPE;
+    public static final int                     INTAKE_CORDS_PWM_SPEED_CONTROLLER_ADDRESS;
+    public static final TPwmSpeedControllerType INTAKE_CORDS_PWM_SPEED_CONTROLLER_TYPE;
+    public static final int                     OUTAKE_PWM_SPEED_CONTROLLER_ADDRESS;
+    public static final TPwmSpeedControllerType OUTAKE_PWM_SPEED_CONTROLLER_TYPE;
+
+    public static final int                     CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS;
+    public static final TPwmSpeedControllerType CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_TYPE;
+    public static final int                     CLIMB_WINCH_PWM_SPEED_CONTROLLER_ADDRESS;
+    public static final TPwmSpeedControllerType CLIMB_WINCH_PWM_SPEED_CONTROLLER_TYPE;
 
     // ******************************************
     // Gyro Ports
@@ -81,7 +103,7 @@ public class RobotMap {
         switch (RobotConst.robot) {
 
         case RobotConst.PROD_ROBOT:
-            // CAN Constants
+            // CAN Constants - NOT USED THIS YEAR
             // Talon and Victor connected through the CAN Bus
             LEFT_DRIVE_CAN_SPEED_CONTROLLER_ADDRESS           = 10;
             LEFT_DRIVE_CAN_SPEED_CONTROLLER_TYPE              = TCanSpeedControllerType.TALON_SRX;
@@ -102,22 +124,42 @@ public class RobotMap {
             RIGHT_DRIVE_CAN_ENCODER_ISINVERTED                = TConst.NOT_INVERTED;
 
             // PWM Constants
-            // Talon and Victors connected through Pwm
             LEFT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS           = 0;
-            LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE              = TPwmSpeedControllerType.TALON_SRX;
+            LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE              = TPwmSpeedControllerType.SPARK;
             LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS  = 1;
-            LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SRX;
+            LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE     = LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE;
+            LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS = 0;
+            LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_TYPE   = LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE;
             LEFT_DRIVE_PWM_MOTOR_ISINVERTED                   = TConst.INVERTED;
             LEFT_DRIVE_DIO_ENCODER_PORT1                      = 0;
             LEFT_DRIVE_DIO_ENCODER_ISINVERTED                 = TConst.INVERTED;
 
             RIGHT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS          = 2;
-            RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE             = TPwmSpeedControllerType.TALON_SRX;
+            RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE             = TPwmSpeedControllerType.SPARK;
             RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS = 3;
-            RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE    = TPwmSpeedControllerType.VICTOR_SPX;
+            RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE    = RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE;
+            RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS = 0;
+            RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_TYPE  = RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE;
             RIGHT_DRIVE_PWM_MOTOR_ISINVERTED                  = TConst.NOT_INVERTED;
             RIGHT_DRIVE_DIO_ENCODER_PORT1                     = 2;
             RIGHT_DRIVE_DIO_ENCODER_ISINVERTED                = TConst.NOT_INVERTED;
+
+            CONTROL_PANEL_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
+            CONTROL_PANEL_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+
+            INTAKE_WHEELS_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
+            INTAKE_WHEELS_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+            INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
+            INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+            INTAKE_CORDS_PWM_SPEED_CONTROLLER_ADDRESS   = 0;
+            INTAKE_CORDS_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
+            OUTAKE_PWM_SPEED_CONTROLLER_ADDRESS         = 0;
+            OUTAKE_PWM_SPEED_CONTROLLER_TYPE            = TPwmSpeedControllerType.TALON_SR;
+
+            CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS   = 0;
+            CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
+            CLIMB_WINCH_PWM_SPEED_CONTROLLER_ADDRESS    = 0;
+            CLIMB_WINCH_PWM_SPEED_CONTROLLER_TYPE       = TPwmSpeedControllerType.TALON_SR;
 
             GYRO_PORT       = 0;
             GYRO_ISINVERTED = TConst.NOT_INVERTED;
@@ -125,14 +167,16 @@ public class RobotMap {
             ULTRASONIC_ANALOG_PORT                            = 0;
             break;
 
-        case RobotConst.TEST_ROBOT:
+        case RobotConst.TEST_ROBOT:  // NOT USED
         default:
             // PWM Constants
             // Talon and Victors connected through Pwm
             LEFT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS           = 0;
             LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE              = TPwmSpeedControllerType.SPARK;
             LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS  = 1;
-            LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SRX;
+            LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE     = LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE;
+            LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS = 0;
+            LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_TYPE   = LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE;
             LEFT_DRIVE_PWM_MOTOR_ISINVERTED                   = TConst.NOT_INVERTED;
             LEFT_DRIVE_DIO_ENCODER_PORT1                      = 0;
             LEFT_DRIVE_DIO_ENCODER_ISINVERTED                 = TConst.INVERTED;
@@ -140,7 +184,9 @@ public class RobotMap {
             RIGHT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS          = 2;
             RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE             = TPwmSpeedControllerType.TALON_SR;
             RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS = 3;
-            RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE    = TPwmSpeedControllerType.VICTOR_SPX;
+            RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_TYPE    = RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE;
+            RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS = 0;
+            RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_TYPE  = RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE;
             RIGHT_DRIVE_PWM_MOTOR_ISINVERTED                  = TConst.INVERTED;
             RIGHT_DRIVE_DIO_ENCODER_PORT1                     = 2;
             RIGHT_DRIVE_DIO_ENCODER_ISINVERTED                = TConst.NOT_INVERTED;
@@ -170,6 +216,23 @@ public class RobotMap {
             RIGHT_DRIVE_CAN_ENCODER_ISINVERTED                = TConst.NOT_INVERTED;
 
             ULTRASONIC_ANALOG_PORT                            = 0;
+
+            CONTROL_PANEL_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
+            CONTROL_PANEL_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+
+            INTAKE_WHEELS_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
+            INTAKE_WHEELS_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+            INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
+            INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+            INTAKE_CORDS_PWM_SPEED_CONTROLLER_ADDRESS   = 0;
+            INTAKE_CORDS_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
+            OUTAKE_PWM_SPEED_CONTROLLER_ADDRESS         = 0;
+            OUTAKE_PWM_SPEED_CONTROLLER_TYPE            = TPwmSpeedControllerType.TALON_SR;
+
+            CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS   = 0;
+            CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
+            CLIMB_WINCH_PWM_SPEED_CONTROLLER_ADDRESS    = 0;
+            CLIMB_WINCH_PWM_SPEED_CONTROLLER_TYPE       = TPwmSpeedControllerType.TALON_SR;
 
             break;
         }
