@@ -19,6 +19,7 @@ import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.ControlPanelSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.PowerSubsystem;
+import frc.robot.subsystems.PwmDriveSubsystem;
 import frc.robot.subsystems.BallSubsystem;
 
 /**
@@ -32,7 +33,7 @@ public class Robot extends TimedRobot {
 
     public static final List<TSubsystem>        subsystemLs             = new ArrayList<TSubsystem>();
 
-    public static final CanDriveSubsystem       driveSubsystem          = new CanDriveSubsystem();
+    public static final PwmDriveSubsystem       driveSubsystem          = new PwmDriveSubsystem();
     public static final PneumaticsSubsystem     pneumaticsSubsystem     = new PneumaticsSubsystem();
     public static final PowerSubsystem          powerSubsystem          = new PowerSubsystem();
     public static final CameraSubsystem         cameraSubsystem         = new CameraSubsystem();

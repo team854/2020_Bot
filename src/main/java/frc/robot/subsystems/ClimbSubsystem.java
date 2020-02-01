@@ -1,14 +1,22 @@
 package frc.robot.subsystems;
 
 import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
-import com.torontocodingcollective.speedcontroller.TPwmSpeedController.TPwmSpeedControllerType;
 import com.torontocodingcollective.subsystem.TSubsystem;
 import frc.robot.commands.climb.DefaultClimbCommand;
+import frc.robot.RobotMap;
 
 public class ClimbSubsystem extends TSubsystem {
 
-    private TPwmSpeedController deploy =    new TPwmSpeedController(TPwmSpeedControllerType.SPARK, 0, false);
-    private TPwmSpeedController winch =     new TPwmSpeedController(TPwmSpeedControllerType.SPARK, 0, false);
+    private TPwmSpeedController deploy =    new TPwmSpeedController(
+                                                    RobotMap.CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_TYPE,
+                                                    RobotMap.CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS,
+                                                    RobotMap.CLIMB_DEPLOY_PWM_MOTOR_ISINVERTED
+                                                );
+    private TPwmSpeedController winch =     new TPwmSpeedController(
+                                                    RobotMap.CLIMB_WINCH_PWM_SPEED_CONTROLLER_TYPE,
+                                                    RobotMap.CLIMB_WINCH_PWM_SPEED_CONTROLLER_ADDRESS,
+                                                    RobotMap.CLIMB_WINCH_PWM_MOTOR_ISINVERTED
+                                                );
 
     @Override
     public void init() {}

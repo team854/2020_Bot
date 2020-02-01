@@ -64,21 +64,28 @@ public class RobotMap {
 
     public static final int                     CONTROL_PANEL_PWM_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType CONTROL_PANEL_PWM_SPEED_CONTROLLER_TYPE;
+    public static final boolean                 CONTROL_PANEL_PWM_MOTOR_ISINVERTED;
     
     // PWM for BallSubsystem (intake)
     public static final int                     INTAKE_WHEELS_PWM_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType INTAKE_WHEELS_PWM_SPEED_CONTROLLER_TYPE;
+    public static final boolean                 INTAKE_WHEELS_PWM_MOTOR_ISINVERTED;
     public static final int                     INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_TYPE;
+    public static final boolean                 INTAKE_DEPLOY_PWM_MOTOR_ISINVERTED;
     public static final int                     INTAKE_CORDS_PWM_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType INTAKE_CORDS_PWM_SPEED_CONTROLLER_TYPE;
+    public static final boolean                 INTAKE_CORDS_PWM_MOTOR_ISINVERTED;
     public static final int                     OUTAKE_PWM_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType OUTAKE_PWM_SPEED_CONTROLLER_TYPE;
+    public static final boolean                 OUTAKE_PWM_MOTOR_ISINVERTED;
 
     public static final int                     CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_TYPE;
+    public static final boolean                 CLIMB_DEPLOY_PWM_MOTOR_ISINVERTED;
     public static final int                     CLIMB_WINCH_PWM_SPEED_CONTROLLER_ADDRESS;
     public static final TPwmSpeedControllerType CLIMB_WINCH_PWM_SPEED_CONTROLLER_TYPE;
+    public static final boolean                 CLIMB_WINCH_PWM_MOTOR_ISINVERTED;
 
     // ******************************************
     // Gyro Ports
@@ -144,22 +151,30 @@ public class RobotMap {
             RIGHT_DRIVE_DIO_ENCODER_PORT1                     = 2;
             RIGHT_DRIVE_DIO_ENCODER_ISINVERTED                = TConst.NOT_INVERTED;
 
+            // Other PWM motors
             CONTROL_PANEL_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
             CONTROL_PANEL_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+            CONTROL_PANEL_PWM_MOTOR_ISINVERTED          = TConst.NOT_INVERTED;
 
             INTAKE_WHEELS_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
             INTAKE_WHEELS_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+            INTAKE_WHEELS_PWM_MOTOR_ISINVERTED          = TConst.NOT_INVERTED;
             INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
             INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+            INTAKE_DEPLOY_PWM_MOTOR_ISINVERTED          = TConst.NOT_INVERTED;
             INTAKE_CORDS_PWM_SPEED_CONTROLLER_ADDRESS   = 0;
             INTAKE_CORDS_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
+            INTAKE_CORDS_PWM_MOTOR_ISINVERTED           = TConst.NOT_INVERTED;
             OUTAKE_PWM_SPEED_CONTROLLER_ADDRESS         = 0;
             OUTAKE_PWM_SPEED_CONTROLLER_TYPE            = TPwmSpeedControllerType.TALON_SR;
+            OUTAKE_PWM_MOTOR_ISINVERTED                 = TConst.NOT_INVERTED;
 
             CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS   = 0;
             CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
+            CLIMB_DEPLOY_PWM_MOTOR_ISINVERTED           = TConst.NOT_INVERTED;
             CLIMB_WINCH_PWM_SPEED_CONTROLLER_ADDRESS    = 0;
             CLIMB_WINCH_PWM_SPEED_CONTROLLER_TYPE       = TPwmSpeedControllerType.TALON_SR;
+            CLIMB_WINCH_PWM_MOTOR_ISINVERTED            = TConst.NOT_INVERTED;
 
             GYRO_PORT       = 0;
             GYRO_ISINVERTED = TConst.NOT_INVERTED;
@@ -217,22 +232,30 @@ public class RobotMap {
 
             ULTRASONIC_ANALOG_PORT                            = 0;
 
+            // Other PWM motors
             CONTROL_PANEL_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
             CONTROL_PANEL_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+            CONTROL_PANEL_PWM_MOTOR_ISINVERTED          = TConst.NOT_INVERTED;
 
             INTAKE_WHEELS_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
             INTAKE_WHEELS_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+            INTAKE_WHEELS_PWM_MOTOR_ISINVERTED          = TConst.NOT_INVERTED;
             INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS  = 0;
             INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
+            INTAKE_DEPLOY_PWM_MOTOR_ISINVERTED          = TConst.NOT_INVERTED;
             INTAKE_CORDS_PWM_SPEED_CONTROLLER_ADDRESS   = 0;
             INTAKE_CORDS_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
+            INTAKE_CORDS_PWM_MOTOR_ISINVERTED           = TConst.NOT_INVERTED;
             OUTAKE_PWM_SPEED_CONTROLLER_ADDRESS         = 0;
             OUTAKE_PWM_SPEED_CONTROLLER_TYPE            = TPwmSpeedControllerType.TALON_SR;
+            OUTAKE_PWM_MOTOR_ISINVERTED                 = TConst.NOT_INVERTED;
 
             CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS   = 0;
             CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
+            CLIMB_DEPLOY_PWM_MOTOR_ISINVERTED           = TConst.NOT_INVERTED;
             CLIMB_WINCH_PWM_SPEED_CONTROLLER_ADDRESS    = 0;
             CLIMB_WINCH_PWM_SPEED_CONTROLLER_TYPE       = TPwmSpeedControllerType.TALON_SR;
+            CLIMB_WINCH_PWM_MOTOR_ISINVERTED            = TConst.NOT_INVERTED;
 
             break;
         }

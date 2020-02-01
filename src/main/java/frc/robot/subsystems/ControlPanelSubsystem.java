@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
+import frc.robot.RobotMap;
 import frc.robot.commands.controlpanel.DefaultControlPanelCommand;
 
 /**
@@ -27,8 +28,11 @@ public class ControlPanelSubsystem extends TSubsystem {
     private final ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
     private final ColorMatch    colorMatcher = new ColorMatch();
 
-    // TODO: Add vars for ports, encoder and pwm types are fake
-    private TPwmSpeedController motor   = new TPwmSpeedController(TPwmSpeedControllerType.SPARK, 0, false);
+    private TPwmSpeedController motor   = new TPwmSpeedController(
+                                                RobotMap.CONTROL_PANEL_PWM_SPEED_CONTROLLER_TYPE,
+                                                RobotMap.CONTROL_PANEL_PWM_SPEED_CONTROLLER_ADDRESS,
+                                                RobotMap.CONTROL_PANEL_PWM_MOTOR_ISINVERTED
+                                            );
 
     public static final Color BLUE_TARGET = ColorMatch.makeColor(0.143, 0.427, 0.429);
     public static final Color GREEN_TARGET = ColorMatch.makeColor(0.197, 0.561, 0.240);
