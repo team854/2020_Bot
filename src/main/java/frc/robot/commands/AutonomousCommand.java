@@ -57,12 +57,27 @@ public class AutonomousCommand extends CommandGroup {
 
         
         switch (pattern) {
-                case AutoSelector.PATTERN_NOTHING:
+            case AutoSelector.PATTERN_NOTHING:
+                break;
+            case AutoSelector.PATTERN_SCORE:
+                switch (robotStartPosition) {
+                    case AutoSelector.ROBOT_ON_TARGET:
+                         //Move to goal
+                         addSequential(new TDriveOnHeadingDistanceCommand(84.75, 0, -0.75, 5, true,
+                                                Robot.oi, Robot.driveSubsystem));
+                         //score
                         break;
-                case AutoSelector.PATTERN_SCORE:
-                        switch (robotStartPosition) {
-                                case Auto
-                        }
+                    case AutoSelector.ROBOT_RIGHT_EDGE:
+                        //Turn , move forward, score
+                        addSequential(new TDriveOnHeadingDistanceCommand(distanceInches, heading, speed, timeout, brakeWhenFinished, oi, driveSubsystem);
+                        break;
+                    case AutoSelector.ROBOT_CENTER:
+                        //Move forward, turn, move forward, turn, move forward, score
+                        addSequential(new TDriveOnHeadingDistanceCommand(60, 0, 0.75, 5, true, 
+                                            Robot.oi, Robot.driveSubsystem));
+                        new TRotateToHeadingCommand(270, Robot.oi, Robot.driveSubsystem);
+                        break;
+                }
         }
 
     }
