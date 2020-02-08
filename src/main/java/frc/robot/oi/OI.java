@@ -47,6 +47,9 @@ public class OI extends TOi {
     // BallCommand stuff
     private TToggle         intakeDeploy        = new TToggle(operatorController, TButton.RIGHT_BUMPER);
 
+    private boolean outakeOverrided     = false;
+    private boolean outakeOverrideState = false;
+
     @Override
     public boolean getCancelCommand() {
         return driverController.getButton(TButton.BACK);
@@ -121,7 +124,19 @@ public class OI extends TOi {
 
     public boolean getOutake() {
         // True means outake
+        if (outakeOverrided) {
+            return outakeOverrideState;
+        }
         return operatorController.getButton(TTrigger.LEFT);
+    }
+
+    public void overrideOutake(boolean state) {
+        outakeOverrided = true;
+        outakeOverrideState = state;
+    }
+
+    public void unOverrideOutake() {
+        outakeOverrided = false;
     }
 
     public boolean getHookUp() {
