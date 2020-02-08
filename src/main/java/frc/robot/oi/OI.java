@@ -50,8 +50,6 @@ public class OI extends TOi {
     // Overrides
     private boolean intakeBallOverrided     = false;
     private boolean intakeBallOverrideState = false;
-    private boolean outakeOverrided     = false;
-    private boolean outakeOverrideState = false;
 
     @Override
     public boolean getCancelCommand() {
