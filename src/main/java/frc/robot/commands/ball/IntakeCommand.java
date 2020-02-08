@@ -4,13 +4,17 @@ import com.torontocodingcollective.commands.TSafeCommand;
 import com.torontocodingcollective.TConst;
 import frc.robot.Robot;
 
-public class IntakeDeployCommand extends TSafeCommand {
+public class IntakeCommand extends TSafeCommand {
 
-    private static final String COMMAND_NAME = IntakeDeployCommand.class.getSimpleName();
+    private static final String COMMAND_NAME = IntakeCommand.class.getSimpleName();
+    private boolean deployState;
+    private boolean intakeState;
 
-    public IntakeDeployCommand() {
+    public IntakeCommand(boolean deployState, boolean intakeState) {
         super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
         requires(Robot.ballSubsystem);
+        this.deployState = deployState;
+        this.intakeState = intakeState;
     }
 
     @Override
@@ -23,11 +27,13 @@ public class IntakeDeployCommand extends TSafeCommand {
     
     @Override
     protected void initialize() {
-        
+        Robot.oi.setIntakeDeploy(deployState);
+        Robot.oi.overrideIntakeBall(intakeState);
     }
 
     @Override
-    protected void execute() {}
+    protected void execute() {
+    }
 
     @Override
     protected boolean isFinished() {
@@ -36,6 +42,7 @@ public class IntakeDeployCommand extends TSafeCommand {
 
     @Override
     protected void end() {
+        // TODO: Do we have to enable motors here?
 
     }
 

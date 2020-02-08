@@ -7,6 +7,7 @@ import com.torontocodingcollective.commands.gyroDrive.TRotateToHeadingCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
+import frc.robot.commands.ball.IntakeCommand;
 import frc.robot.oi.AutoSelector;
 
 /**
@@ -66,7 +67,10 @@ public class AutonomousCommand extends CommandGroup {
             case AutoSelector.PATTERN_PICKUP_SCORE:
                 switch (robotStartPosition) {
                     case AutoSelector.ROBOT_RIGHT_EDGE:
-                        addSequential(command);
+                        addSequential(new IntakeCommand(true, true));
+                        // Pickup two balls
+                        addSequential(new TDriveOnHeadingDistanceCommand(162, 0, 0.5, 5, true,
+                                            Robot.oi, Robot.driveSubsystem));
 
                 }
         }
