@@ -4,7 +4,6 @@ import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
-import com.torontocodingcollective.speedcontroller.TPwmSpeedController.TPwmSpeedControllerType;
 import com.torontocodingcollective.subsystem.TSubsystem;
 
 import edu.wpi.first.wpilibj.DriverStation;

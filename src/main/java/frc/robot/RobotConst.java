@@ -31,6 +31,9 @@ public class RobotConst {
     /** Distance behind the front bumper */
     public static final double  ULTRASONIC_RECESS;
 
+    // Robot length in inches
+    public static final double  ROBOT_LENGTH = 35.25;
+
     public static enum Direction {
         FORWARD, BACKWARD
     };

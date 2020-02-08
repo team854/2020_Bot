@@ -7,31 +7,31 @@ public class AutoSelector {
 
     public static SendableChooser<String> robotStartPosition;
 
-    public static final String            ROBOT_LEFT   = "Robot Left";
-    public static final String            ROBOT_CENTER = "Robot Center";
-    public static final String            ROBOT_RIGHT  = "Robot Right";
+    public static final String  ROBOT_ON_TARGET     = "Robot Facing Goal";
+    public static final String  ROBOT_RIGHT_EDGE    = "Robot Right Edge Facing Trench";
+    public static final String  ROBOT_CENTER        = "Robot Center";  // Against wall
 
     public static SendableChooser<String> pattern;
 
-    public static final String            PATTERN_STRAIGHT  = "Straight";
-    public static final String            PATTERN_STR_NP    = "Straight No PID";
-    public static final String            PATTERN_BOX       = "Box";
+    public static final String  PATTERN_SCORE           = "Score";
+    public static final String  PATTERN_PICKUP_SCORE    = "Pickup then score";
+    public static final String  PATTERN_NOTHING         = "Do nothing";
 
     static {
 
         // Robot Position Options
         robotStartPosition = new SendableChooser<String>();
-        robotStartPosition.addOption(ROBOT_LEFT, ROBOT_LEFT);
         robotStartPosition.setDefaultOption(ROBOT_CENTER, ROBOT_CENTER);
-        robotStartPosition.addOption(ROBOT_RIGHT, ROBOT_RIGHT);
+        robotStartPosition.addOption(ROBOT_ON_TARGET, ROBOT_ON_TARGET);
+        robotStartPosition.addOption(ROBOT_RIGHT_EDGE, ROBOT_RIGHT_EDGE);
 
         SmartDashboard.putData("Robot Start", robotStartPosition);
 
         // Robot Pattern Options
         pattern = new SendableChooser<String>();
-        pattern.setDefaultOption(PATTERN_STRAIGHT, PATTERN_STRAIGHT);
-        pattern.addOption(PATTERN_BOX, PATTERN_BOX);
-        pattern.addOption(PATTERN_STR_NP, PATTERN_STR_NP);
+        pattern.setDefaultOption(PATTERN_SCORE, PATTERN_SCORE);
+        pattern.addOption(PATTERN_PICKUP_SCORE, PATTERN_PICKUP_SCORE);
+        pattern.addOption(PATTERN_NOTHING, PATTERN_NOTHING);
 
         SmartDashboard.putData("Auto Pattern", pattern);
     }
@@ -46,7 +46,7 @@ public class AutoSelector {
         String selectedPattern = pattern.getSelected();
 
         if (selectedPattern == null) {
-            return PATTERN_STRAIGHT;
+            return PATTERN_NOTHING;
         }
 
         return selectedPattern;
