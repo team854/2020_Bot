@@ -70,6 +70,7 @@ public class AutonomousCommand extends CommandGroup {
                         // Score
                         addSequential(new OutakeCommand(true));
                         addSequential(new AutoDelay(1));
+                        addSequential(new OutakeCommand(false));
                          // Move back
                         addSequential(new TDriveOnHeadingDistanceCommand(42.375, 0, 0.5, 5, true,
                                                 Robot.oi, Robot.driveSubsystem));
@@ -85,17 +86,39 @@ public class AutonomousCommand extends CommandGroup {
                         break;
                     case AutoSelector.ROBOT_CENTER:
                         break;
-                        //case Auto
                 }
                 break;
             case AutoSelector.PATTERN_PICKUP_SCORE:
                 switch (robotStartPosition) {
                     case AutoSelector.ROBOT_RIGHT_EDGE:
-                        addSequential(new IntakeCommand(true, true));
+                        addParallel(new IntakeCommand(true, true));
                         // Pickup two balls
                         addSequential(new TDriveOnHeadingDistanceCommand(162, 0, 0.5, 5, true,
                                             Robot.oi, Robot.driveSubsystem));
-
+                        addSequential(new AutoDelay(0.1));
+                        // Drive backwards at an angle
+                        addSequential(new TDriveOnHeadingDistanceCommand(250, 340, -0.5, 5, true,
+                                            Robot.oi, Robot.driveSubsystem));
+                        addSequential(new AutoDelay(0.1));
+                        // Align to score
+                        addSequential(new TDriveOnHeadingDistanceCommand(50, 0, -0.5, 5, true,
+                                            Robot.oi, Robot.driveSubsystem));
+                        addSequential(new AutoDelay(0.1));
+                        // Score
+                        addSequential(new OutakeCommand(true));
+                        addSequential(new AutoDelay(2));
+                        addSequential(new OutakeCommand(false));
+                        // Copied from above:
+                        // Move back
+                        addSequential(new TDriveOnHeadingDistanceCommand(42.375, 0, 0.5, 5, true,
+                                                Robot.oi, Robot.driveSubsystem));
+                        addSequential(new AutoDelay(0.1));
+                        // Turn right
+                        addSequential(new TRotateToHeadingCommand(90, Robot.oi, Robot.driveSubsystem));
+                        addSequential(new AutoDelay(0.1));
+                        // Move across
+                        addSequential(new TDriveOnHeadingDistanceCommand(120, 90, 0.5, 5, true, 
+                                                Robot.oi, Robot.driveSubsystem));
                 }
                 break;
         }

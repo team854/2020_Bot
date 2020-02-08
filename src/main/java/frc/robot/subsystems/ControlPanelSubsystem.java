@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
+import frc.robot.RobotConst;
 import frc.robot.RobotMap;
 import frc.robot.commands.controlpanel.DefaultControlPanelCommand;
 
@@ -44,6 +45,7 @@ public class ControlPanelSubsystem extends TSubsystem {
         colorMatcher.addColorMatch(GREEN_TARGET);
         colorMatcher.addColorMatch(RED_TARGET);
         colorMatcher.addColorMatch(YELLOW_TARGET);
+        colorMatcher.setConfidenceThreshold(RobotConst.COLOR_CONFIDENCE);
     }
 
     @Override
@@ -59,7 +61,11 @@ public class ControlPanelSubsystem extends TSubsystem {
     /** Get the color sensor colour */
     public Color getColorSensorColor() {
 
-        ColorMatchResult match = colorMatcher.matchClosestColor(colorSensor.getColor());
+        ColorMatchResult match = colorMatcher.matchColor(colorSensor.getColor());
+        
+        if (match == null) {
+            return UNKNOWN_TARGET;
+        }
 
         if (match.color.equals(BLUE_TARGET)) {
             return BLUE_TARGET;
