@@ -7,6 +7,7 @@ import com.torontocodingcollective.commands.gyroDrive.TRotateToHeadingCommand;
 import frc.robot.commands.ball.OutakeCommand;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
+import frc.robot.commands.ball.IntakeCommand;
 import frc.robot.oi.AutoSelector;
 import frc.robot.commands.auto.AutoDelay;
 
@@ -45,7 +46,6 @@ public class AutonomousCommand extends CommandGroup {
      * sensor information relevant to when the command is run.
      */
     public AutonomousCommand() {
-
         // getting info
         String robotStartPosition = AutoSelector.getRobotStartPosition();
         String pattern            = AutoSelector.getPattern();
@@ -85,7 +85,19 @@ public class AutonomousCommand extends CommandGroup {
                         break;
                     case AutoSelector.ROBOT_CENTER:
                         break;
+                        //case Auto
                 }
+                break;
+            case AutoSelector.PATTERN_PICKUP_SCORE:
+                switch (robotStartPosition) {
+                    case AutoSelector.ROBOT_RIGHT_EDGE:
+                        addSequential(new IntakeCommand(true, true));
+                        // Pickup two balls
+                        addSequential(new TDriveOnHeadingDistanceCommand(162, 0, 0.5, 5, true,
+                                            Robot.oi, Robot.driveSubsystem));
+
+                }
+                break;
         }
 
     }

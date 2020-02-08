@@ -47,8 +47,11 @@ public class OI extends TOi {
     // BallCommand stuff
     private TToggle         intakeDeploy        = new TToggle(operatorController, TButton.RIGHT_BUMPER);
 
+    // Overrides
     private boolean outakeOverrided     = false;
     private boolean outakeOverrideState = false;
+    private boolean intakeBallOverrided     = false;
+    private boolean intakeBallOverrideState = false;
 
     @Override
     public boolean getCancelCommand() {
@@ -117,9 +120,25 @@ public class OI extends TOi {
         return intakeDeploy.get();
     }
 
+    public void setIntakeDeploy(boolean state) {
+        intakeDeploy.set(state);
+    }
+
     public boolean getIntakeBall() {
         // True means intaking
+        if (intakeBallOverrided) {
+            return intakeBallOverrideState;
+        }
         return operatorController.getButton(TTrigger.RIGHT);
+    }
+
+    public void overrideIntakeBall(boolean state) {
+        intakeBallOverrided = true;
+        intakeBallOverrideState = state;
+    }
+
+    public void unOverrideIntakeBall() {
+        intakeBallOverrided = false;
     }
 
     public boolean getOutake() {

@@ -150,6 +150,8 @@ public class Robot extends TimedRobot {
         // SpeedController built in braking.
         Robot.oi.setSpeedPidEnabled(false);
         driveSubsystem.disableSpeedPids();
+        
+        oi.unOverrideIntakeBall();
 
         oi.unOverrideOutake();
     }
