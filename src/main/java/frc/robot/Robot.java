@@ -151,6 +151,7 @@ public class Robot extends TimedRobot {
         Robot.oi.setSpeedPidEnabled(false);
         driveSubsystem.disableSpeedPids();
 
+        oi.unOverrideOutake();
     }
 
     /**

@@ -6,13 +6,13 @@ import frc.robot.Robot;
 
 public class OutakeCommand extends TSafeCommand {
 
-    private static final    String  COMMAND_NAME =   OutakeCommand.class.getSimpleName();
-    private                 boolean intakeState =    false;
-    private                 boolean outakeState =    false;
+    private static final    String  COMMAND_NAME    = OutakeCommand.class.getSimpleName();
+    private                 boolean outakeState     = false;
 
-    public OutakeCommand() {
+    public OutakeCommand(boolean state) {
         super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
         requires(Robot.ballSubsystem);
+        this.outakeState = state;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class OutakeCommand extends TSafeCommand {
     
     @Override
     protected void initialize() {
-        
+        Robot.oi.overrideOutake(outakeState);
     }
 
     @Override
@@ -38,6 +38,6 @@ public class OutakeCommand extends TSafeCommand {
 
     @Override
     protected void end() {
-
+        // TODO: Move motors?
     }
 }

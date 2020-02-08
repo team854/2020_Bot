@@ -4,10 +4,11 @@ import com.torontocodingcollective.TConst;
 import com.torontocodingcollective.commands.drive.TDriveTimeCommand;
 import com.torontocodingcollective.commands.gyroDrive.TDriveOnHeadingDistanceCommand;
 import com.torontocodingcollective.commands.gyroDrive.TRotateToHeadingCommand;
-
+import frc.robot.commands.ball.OutakeCommand;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 import frc.robot.oi.AutoSelector;
+import frc.robot.commands.auto.AutoDelay;
 
 /**
  * AutonomousCommand
@@ -62,17 +63,22 @@ public class AutonomousCommand extends CommandGroup {
             case AutoSelector.PATTERN_SCORE:
                 switch (robotStartPosition) {
                     case AutoSelector.ROBOT_ON_TARGET:
-                         // Move to goal
-                         addSequential(new TDriveOnHeadingDistanceCommand(84.75, 0, -0.5, 5, true,
+                        // Move to goal
+                        addSequential(new TDriveOnHeadingDistanceCommand(84.75, 0, -0.5, 5, true,
                                                 Robot.oi, Robot.driveSubsystem));
-                         // Score (not written yet)
+                        addSequential(new AutoDelay(0.1));
+                        // Score
+                        addSequential(new OutakeCommand(true));
+                        addSequential(new AutoDelay(1));
                          // Move back
-                         addSequential(new TDriveOnHeadingDistanceCommand(42.375, 0, 0.5, 5, true,
+                        addSequential(new TDriveOnHeadingDistanceCommand(42.375, 0, 0.5, 5, true,
                                                 Robot.oi, Robot.driveSubsystem));
-                         // Turn right
-                         addSequential(new TRotateToHeadingCommand(90, Robot.oi, Robot.driveSubsystem));
-                         // Move across
-                         addSequential(new TDriveOnHeadingDistanceCommand(120, 90, 0.5, 5, true, 
+                        addSequential(new AutoDelay(0.1));
+                        // Turn right
+                        addSequential(new TRotateToHeadingCommand(90, Robot.oi, Robot.driveSubsystem));
+                        addSequential(new AutoDelay(0.1));
+                        // Move across
+                        addSequential(new TDriveOnHeadingDistanceCommand(120, 90, 0.5, 5, true, 
                                                 Robot.oi, Robot.driveSubsystem));
                         break;
                     case AutoSelector.ROBOT_RIGHT_EDGE:
