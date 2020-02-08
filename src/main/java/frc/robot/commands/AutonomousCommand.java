@@ -62,20 +62,22 @@ public class AutonomousCommand extends CommandGroup {
             case AutoSelector.PATTERN_SCORE:
                 switch (robotStartPosition) {
                     case AutoSelector.ROBOT_ON_TARGET:
-                         //Move to goal
-                         addSequential(new TDriveOnHeadingDistanceCommand(84.75, 0, -0.75, 5, true,
+                         // Move to goal
+                         addSequential(new TDriveOnHeadingDistanceCommand(84.75, 0, -0.5, 5, true,
                                                 Robot.oi, Robot.driveSubsystem));
-                         //score
+                         // Score (not written yet)
+                         // Move back
+                         addSequential(new TDriveOnHeadingDistanceCommand(42.375, 0, 0.5, 5, true,
+                                                Robot.oi, Robot.driveSubsystem));
+                         // Turn right
+                         addSequential(new TRotateToHeadingCommand(90, Robot.oi, Robot.driveSubsystem));
+                         // Move across
+                         addSequential(new TDriveOnHeadingDistanceCommand(120, 90, 0.5, 5, true, 
+                                                Robot.oi, Robot.driveSubsystem));
                         break;
                     case AutoSelector.ROBOT_RIGHT_EDGE:
-                        //Turn , move forward, score
-                        addSequential(new TDriveOnHeadingDistanceCommand(distanceInches, heading, speed, timeout, brakeWhenFinished, oi, driveSubsystem);
                         break;
                     case AutoSelector.ROBOT_CENTER:
-                        //Move forward, turn, move forward, turn, move forward, score
-                        addSequential(new TDriveOnHeadingDistanceCommand(60, 0, 0.75, 5, true, 
-                                            Robot.oi, Robot.driveSubsystem));
-                        new TRotateToHeadingCommand(270, Robot.oi, Robot.driveSubsystem);
                         break;
                 }
         }
