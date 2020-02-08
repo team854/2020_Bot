@@ -49,14 +49,20 @@ public class AutonomousCommand extends CommandGroup {
         // getting info
         String robotStartPosition = AutoSelector.getRobotStartPosition();
         String pattern            = AutoSelector.getPattern();
+        double delayTime          = AutoSelector.getDelayTime();
 
         // Print out the user selection and Game config for debug later
         System.out.println("Auto Command Configuration");
         System.out.println("--------------------------");
         System.out.println("Robot Position : " + robotStartPosition);
         System.out.println("Pattern        : " + pattern);
+        System.out.println("Delay Time     : " + delayTime);
 
-        
+        // Delay before pattern
+        if (delayTime > 0) {
+            addSequential(new AutoDelay(delayTime));
+        }
+
         switch (pattern) {
             case AutoSelector.PATTERN_NOTHING:
                 break;

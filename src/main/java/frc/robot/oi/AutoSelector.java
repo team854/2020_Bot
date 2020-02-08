@@ -17,6 +17,16 @@ public class AutoSelector {
     public static final String  PATTERN_PICKUP_SCORE    = "Pickup then score";
     public static final String  PATTERN_NOTHING         = "Do nothing";
 
+    public static SendableChooser<String> delayTime;
+    
+    public static final String            DELAY_TIME_0        = "0";
+    public static final String            DELAY_TIME_1        = "1";
+    public static final String            DELAY_TIME_2        = "2";
+    public static final String            DELAY_TIME_3        = "3";
+    public static final String            DELAY_TIME_4        = "4";
+    public static final String            DELAY_TIME_5        = "5";
+
+
     static {
 
         // Robot Position Options
@@ -34,6 +44,18 @@ public class AutoSelector {
         pattern.addOption(PATTERN_NOTHING, PATTERN_NOTHING);
 
         SmartDashboard.putData("Auto Pattern", pattern);
+
+        // Delay time at beginning of match
+        delayTime = new SendableChooser<String>();
+        delayTime.setDefaultOption(DELAY_TIME_0, DELAY_TIME_0);
+        delayTime.addOption(DELAY_TIME_1, DELAY_TIME_1);
+        delayTime.addOption(DELAY_TIME_2, DELAY_TIME_2);
+        delayTime.addOption(DELAY_TIME_3, DELAY_TIME_3);
+        delayTime.addOption(DELAY_TIME_4, DELAY_TIME_4);
+        delayTime.addOption(DELAY_TIME_5, DELAY_TIME_5);
+
+        SmartDashboard.putData("Delay Time", delayTime);
+
     }
 
     /**
@@ -67,6 +89,21 @@ public class AutoSelector {
 
         return selectedStartPosition;
     }
+
+    /**
+     * Get the delay before moving
+     * 
+     * @return double delay time
+     */
+    public static double getDelayTime() {
+
+        if (delayTime.getSelected() == null) {
+            System.out.println("Delay Time not chosen - overriding to " + DELAY_TIME_0);
+            return 0;
+        }
+        return Double.valueOf(delayTime.getSelected());
+    }
+
 
     public static void init() {}
 }
