@@ -44,7 +44,6 @@ public class AutonomousCommand extends CommandGroup {
      * sensor information relevant to when the command is run.
      */
     public AutonomousCommand() {
-
         // getting info
         String robotStartPosition = AutoSelector.getRobotStartPosition();
         String pattern            = AutoSelector.getPattern();
@@ -57,12 +56,19 @@ public class AutonomousCommand extends CommandGroup {
 
         
         switch (pattern) {
-                case AutoSelector.PATTERN_NOTHING:
-                        break;
-                case AutoSelector.PATTERN_SCORE:
-                        switch (robotStartPosition) {
-                                case Auto
-                        }
+            case AutoSelector.PATTERN_NOTHING:
+                break;
+            case AutoSelector.PATTERN_SCORE:
+                switch (robotStartPosition) {
+                        //case Auto
+                }
+                break;
+            case AutoSelector.PATTERN_PICKUP_SCORE:
+                switch (robotStartPosition) {
+                    case AutoSelector.ROBOT_RIGHT_EDGE:
+                        addSequential(command);
+
+                }
         }
 
     }
