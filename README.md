@@ -1,10 +1,4 @@
-# 2020_GyroDrive_OldCommands
-2020 Gyro Drive using Old Style Commands
-<p>
-This version of the GyroDrive has been updated to use Old Style commands based on the 2020 FRC framework.
-<p>
-Clone this repository to start your 2020 season based on the Gyro Drive framework
-<p>
-Best of luck to all teams!
-<p>
-P.S. A framework based on the new Command paradigm is not scheduled for this season.
+# 2020_Bot
+Iron Bears or FRC team 854's code for the 2020 season. This code uses the [GyroDrive](https://www.torontocodingcollective.com/gyro-drive) framework, which works on top of WPILib. We have permission from the GyroDrive creator to do this.
+
+Please see the LICENSE file before using or modifying this code.
