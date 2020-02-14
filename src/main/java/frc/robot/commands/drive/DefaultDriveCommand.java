@@ -7,6 +7,7 @@ import com.torontocodingcollective.oi.TStickPosition;
 import com.torontocodingcollective.speedcontroller.TSpeeds;
 
 import frc.robot.Robot;
+import frc.robot.RobotConst;
 import frc.robot.oi.OI;
 import frc.robot.subsystems.CanDriveSubsystem;
 import frc.robot.subsystems.PwmDriveSubsystem;
@@ -89,6 +90,9 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             break;
         }
 
+
+        motorSpeeds.left *= RobotConst.MOTOR_SPEED_PERCENT;
+        motorSpeeds.right *= RobotConst.MOTOR_SPEED_PERCENT;
         driveSubsystem.setSpeed(motorSpeeds);
     }
 

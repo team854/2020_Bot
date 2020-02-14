@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import com.torontocodingcollective.sensors.encoder.TDioQuadEncoder;
 import com.torontocodingcollective.sensors.gyro.TAnalogGyro;
+import com.torontocodingcollective.sensors.gyro.TNavXGyro;
+import com.torontocodingcollective.sensors.gyro.TSpiGyro;
 import com.torontocodingcollective.sensors.ultrasonic.TUltrasonicSensor;
 import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
 import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
@@ -28,17 +30,13 @@ public class PwmDriveSubsystem extends TGyroDriveSubsystem {
                 new TPwmSpeedController(
                         RobotMap.LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE,
                         RobotMap.LEFT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS,
-                        RobotMap.LEFT_DRIVE_PWM_MOTOR_ISINVERTED,
-                        RobotMap.LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS,
-                        RobotMap.LEFT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS),
+                        RobotMap.LEFT_DRIVE_PWM_MOTOR_ISINVERTED),
 
                 // Right Speed Controller
                 new TPwmSpeedController(
                         RobotMap.RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE,
                         RobotMap.RIGHT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS,
-                        RobotMap.RIGHT_DRIVE_PWM_MOTOR_ISINVERTED,
-                        RobotMap.RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_ADDRESS,
-                        RobotMap.RIGHT_DRIVE_PWM_FOLLOWER_SPEED_CONTROLLER_2_ADDRESS),
+                        RobotMap.RIGHT_DRIVE_PWM_MOTOR_ISINVERTED),
 
                 // Left Encoder
                 new TDioQuadEncoder(
@@ -60,7 +58,7 @@ public class PwmDriveSubsystem extends TGyroDriveSubsystem {
                 RobotConst.MAX_LOW_GEAR_SPEED,
 
                 // Gyro used for this subsystem
-                new TAnalogGyro(RobotMap.GYRO_PORT, RobotMap.GYRO_ISINVERTED),
+                new TNavXGyro(RobotMap.GYRO_ISINVERTED),
 
                 // Gyro PID Constants
                 RobotConst.DRIVE_GYRO_PID_KP,

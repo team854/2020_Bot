@@ -9,7 +9,6 @@ import com.torontocodingcollective.TConst;
 public class CanDriveTestCommand extends TSafeCommand {
 
     private static final    String  COMMAND_NAME =   CanDriveTestCommand.class.getSimpleName();
-    private boolean finished = false;
     public CanDriveTestCommand() {
         super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
         requires(Robot.canDriveTestSubsystem);
@@ -34,11 +33,6 @@ public class CanDriveTestCommand extends TSafeCommand {
             return;
         }
 
-        if (finished) {
-            // Start again
-            finished = false;
-        }
-
         // Run each motor for 2 seconds, individually
 
         double motorSpeed = 0.25;
@@ -60,12 +54,11 @@ public class CanDriveTestCommand extends TSafeCommand {
         Robot.canDriveTestSubsystem.setRight3Speed(motorSpeed);
         Timer.delay(2);
         Robot.canDriveTestSubsystem.setRight3Speed(0);
-        finished = true;
-    }
+      }
 
     @Override
     protected boolean isFinished() {
-        return finished;
+        return false;
     }
 
     @Override

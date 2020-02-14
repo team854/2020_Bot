@@ -37,6 +37,9 @@ public class RobotConst {
     // Confidence threshold for color detection
     public static final double  COLOR_CONFIDENCE = 0.95;
 
+    // Motor speed %
+    public static final double  MOTOR_SPEED_PERCENT = 0.5;
+
     public static enum Direction {
         FORWARD, BACKWARD
     };

@@ -55,7 +55,7 @@ public class DefaultControlPanelCommand extends TSafeCommand {
         // Spin routine is happening
         if (spinRoutine == true) {     
             // Check if we're done
-            if (numColors == RobotConst.CP_SECTIONS) {
+            if (numColors >= RobotConst.CP_SECTIONS) {
                 Robot.controlPanelSubsystem.setMotorSpeed(0);
                 spinRoutine = false;
                 return;

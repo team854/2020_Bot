@@ -9,6 +9,8 @@ public class DefaultBallCommand extends TSafeCommand {
     private static final    String  COMMAND_NAME =   DefaultBallCommand.class.getSimpleName();
     private                 boolean intakeState =    false;
     private                 boolean outakeState =    false;
+    private                 double  startTime   =    0;
+    private                 boolean isIntakeDeployDown = false;
 
     public DefaultBallCommand() {
         super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
@@ -31,17 +33,36 @@ public class DefaultBallCommand extends TSafeCommand {
     @Override
     protected void execute() {
         // Deploy
+        // TODO: All motor speeds are dummy values - they will need to be adjusted
         if (Robot.oi.getIntakeDeploy()) {
-            // TODO: All motor speeds are dummy values - they will need to be adjusted
-            Robot.ballSubsystem.setIntakeDeploySpeed(1);
+            if (isIntakeDeployDown) {
+                if (timeSinceInitialized()-startTime >= 1) {
+                    Robot.ballSubsystem.setIntakeDeploySpeed(0);
+                }
+            } else {
+                isIntakeDeployDown = true;
+                startTime = timeSinceInitialized();
+                Robot.ballSubsystem.setIntakeDeploySpeed(1);
+            }
         } else {
-            Robot.ballSubsystem.setIntakeDeploySpeed(-1);
+            if (!isIntakeDeployDown) {
+                if (timeSinceInitialized()-startTime >= 1) {
+                    Robot.ballSubsystem.setIntakeDeploySpeed(0);
+                }
+            } else {
+                isIntakeDeployDown = false;
+                startTime = timeSinceInitialized();
+                Robot.ballSubsystem.setIntakeDeploySpeed(-1);
+            }
         }
         // Internal intake or outake motors
         if (Robot.oi.getOutake()) {  // Outake take priority if both are pressed
             setOutakeState(true);
         } else if (Robot.oi.getIntakeBall()) {
             setIntakeState(true);
+        } else {
+            setIntakeState(false);
+            setOutakeState(false);
         }
     }
 
