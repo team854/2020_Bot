@@ -30,14 +30,17 @@ public class DefaultClimbCommand extends TSafeCommand {
     protected void execute() {
         // TODO: Motor speeds are dummy, MUST be changed
         
-        if (Robot.oi.getWinchDown()) {
-            // Winch and bring up hook
-            Robot.climbSubsystem.setWinchSpeed(1);
-            Robot.climbSubsystem.setDeploySpeed(-1);
+        if (Robot.oi.getWinchDown()) {          //ADDED THE WINCH UP STUFF, IN OI AS WELL, 
+            // Winch and bring up hook 
+            Robot.climbSubsystem.setWinchSpeed(-0.2);
+            //Robot.climbSubsystem.setDeploySpeed(0.2);
+        } else if (Robot.oi.getWinchUp()) {
+            Robot.climbSubsystem.setWinchSpeed(0.2);
+            //Robot.climbSubsystem.setDeploySpeed(-0.2);
         } else if (Robot.oi.getHookUp()) {
-            Robot.climbSubsystem.setDeploySpeed(1);
+            Robot.climbSubsystem.setDeploySpeed(-0.2);
         } else if (Robot.oi.getHookDown()) {
-            Robot.climbSubsystem.setDeploySpeed(-1);
+            Robot.climbSubsystem.setDeploySpeed(0.2);
         }
     }
 

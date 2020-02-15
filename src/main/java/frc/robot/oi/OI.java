@@ -10,6 +10,7 @@ import com.torontocodingcollective.oi.TStickPosition;
 import com.torontocodingcollective.oi.TToggle;
 import com.torontocodingcollective.oi.TTrigger;
 
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -159,7 +160,7 @@ public class OI extends TOi {
     }
 
     public boolean getHookUp() {
-        return driverController.getButton(TTrigger.RIGHT);
+        return driverController.getButton(TButton.LEFT_BUMPER);
     }
 
     public boolean getHookDown() {
@@ -167,6 +168,10 @@ public class OI extends TOi {
     }
 
     public boolean getWinchDown() {
+        return driverController.getButton(TTrigger.RIGHT);
+    }
+
+    public boolean getWinchUp() {
         return driverController.getButton(TTrigger.LEFT);
     }
 

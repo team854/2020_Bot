@@ -1,9 +1,9 @@
 package frc.robot.subsystems;
 
 import com.torontocodingcollective.sensors.encoder.TDioQuadEncoder;
-import com.torontocodingcollective.sensors.gyro.TAnalogGyro;
+//import com.torontocodingcollective.sensors.gyro.TAnalogGyro;
 import com.torontocodingcollective.sensors.gyro.TNavXGyro;
-import com.torontocodingcollective.sensors.gyro.TSpiGyro;
+//import com.torontocodingcollective.sensors.gyro.TSpiGyro;
 import com.torontocodingcollective.sensors.ultrasonic.TUltrasonicSensor;
 import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
 import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;

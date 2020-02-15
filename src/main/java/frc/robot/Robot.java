@@ -69,7 +69,7 @@ public class Robot extends TimedRobot {
         oi = new OI();
         oi.init();
 
-        for (TSubsystem subsystem : subsystemLs) {
+        for (final TSubsystem subsystem : subsystemLs) {
             subsystem.init();
         }
 
@@ -150,7 +150,7 @@ public class Robot extends TimedRobot {
         // SpeedController built in braking.
         Robot.oi.setSpeedPidEnabled(false);
         driveSubsystem.disableSpeedPids();
-        
+
         oi.unOverrideIntakeBall();
 
         oi.unOverrideOutake();
@@ -184,7 +184,7 @@ public class Robot extends TimedRobot {
     private void updatePeriodic() {
 
         // Update all subsystems
-        for (TSubsystem subsystem : subsystemLs) {
+        for (final TSubsystem subsystem : subsystemLs) {
             subsystem.updatePeriodic();
         }
     }

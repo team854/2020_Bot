@@ -136,27 +136,27 @@ public class RobotMap {
             RIGHT_DRIVE_DIO_ENCODER_ISINVERTED                = TConst.NOT_INVERTED;
 
             // Other PWM motors
-            CONTROL_PANEL_PWM_SPEED_CONTROLLER_ADDRESS  = 2;
+            CONTROL_PANEL_PWM_SPEED_CONTROLLER_ADDRESS  = 8;
             CONTROL_PANEL_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
             CONTROL_PANEL_PWM_MOTOR_ISINVERTED          = TConst.NOT_INVERTED;
 
-            INTAKE_WHEELS_PWM_SPEED_CONTROLLER_ADDRESS  = 3;
+            INTAKE_WHEELS_PWM_SPEED_CONTROLLER_ADDRESS  = 2;
             INTAKE_WHEELS_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
             INTAKE_WHEELS_PWM_MOTOR_ISINVERTED          = TConst.NOT_INVERTED;
-            INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS  = 4;
+            INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS  = 3;
             INTAKE_DEPLOY_PWM_SPEED_CONTROLLER_TYPE     = TPwmSpeedControllerType.TALON_SR;
             INTAKE_DEPLOY_PWM_MOTOR_ISINVERTED          = TConst.NOT_INVERTED;
-            INTAKE_CORDS_PWM_SPEED_CONTROLLER_ADDRESS   = 5;
+            INTAKE_CORDS_PWM_SPEED_CONTROLLER_ADDRESS   = 4;
             INTAKE_CORDS_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
             INTAKE_CORDS_PWM_MOTOR_ISINVERTED           = TConst.NOT_INVERTED;
-            OUTAKE_PWM_SPEED_CONTROLLER_ADDRESS         = 6;
+            OUTAKE_PWM_SPEED_CONTROLLER_ADDRESS         = 5;
             OUTAKE_PWM_SPEED_CONTROLLER_TYPE            = TPwmSpeedControllerType.TALON_SR;
             OUTAKE_PWM_MOTOR_ISINVERTED                 = TConst.NOT_INVERTED;
 
-            CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS   = 7;
+            CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_ADDRESS   = 6;
             CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
             CLIMB_DEPLOY_PWM_MOTOR_ISINVERTED           = TConst.NOT_INVERTED;
-            CLIMB_WINCH_PWM_SPEED_CONTROLLER_ADDRESS    = 8;
+            CLIMB_WINCH_PWM_SPEED_CONTROLLER_ADDRESS    = 7;
             CLIMB_WINCH_PWM_SPEED_CONTROLLER_TYPE       = TPwmSpeedControllerType.TALON_SR;
             CLIMB_WINCH_PWM_MOTOR_ISINVERTED            = TConst.NOT_INVERTED;
 
@@ -166,7 +166,7 @@ public class RobotMap {
             ULTRASONIC_ANALOG_PORT                            = 0;
             break;
 
-        case RobotConst.TEST_ROBOT:  // NOT USED
+        case RobotConst.TEST_ROBOT:  // NOT USED/////////////////////////////////////////////////////
         default:
             // PWM Constants
             // Talon and Victors connected through Pwm
