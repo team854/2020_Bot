@@ -38,7 +38,7 @@ public class RobotConst {
     public static final double  COLOR_CONFIDENCE = 0.95;
 
     // Motor speed %
-    public static final double  MOTOR_SPEED_PERCENT = 0.5;
+    public static final double  MOTOR_SPEED_PERCENT = 0.25;
 
     public static enum Direction {
         FORWARD, BACKWARD
