@@ -148,7 +148,7 @@ public class RobotMap {
             INTAKE_DEPLOY_PWM_MOTOR_ISINVERTED          = TConst.NOT_INVERTED;
             INTAKE_CORDS_PWM_SPEED_CONTROLLER_ADDRESS   = 4;
             INTAKE_CORDS_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
-            INTAKE_CORDS_PWM_MOTOR_ISINVERTED           = TConst.NOT_INVERTED;
+            INTAKE_CORDS_PWM_MOTOR_ISINVERTED           = TConst.INVERTED;
             OUTAKE_PWM_SPEED_CONTROLLER_ADDRESS         = 5;
             OUTAKE_PWM_SPEED_CONTROLLER_TYPE            = TPwmSpeedControllerType.TALON_SR;
             OUTAKE_PWM_MOTOR_ISINVERTED                 = TConst.NOT_INVERTED;

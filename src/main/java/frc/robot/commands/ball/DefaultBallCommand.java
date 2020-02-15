@@ -36,6 +36,14 @@ public class DefaultBallCommand extends TSafeCommand {
         // TODO: All motor speeds are dummy values - they will need to be adjusted
 
         if (Robot.oi.getIntakeDeployDown()) {
+            Robot.ballSubsystem.setIntakeDeploySpeed(0.4);
+        } else if (Robot.oi.getIntakeDeployUp()) {
+            Robot.ballSubsystem.setIntakeDeploySpeed(-0.4);
+        } else {
+            Robot.ballSubsystem.setIntakeDeploySpeed(0);
+        }
+
+        /*if (Robot.oi.getIntakeDeployDown()) {
             if (isIntakeDeployDown) {
                 if (timeSinceInitialized()-startTime >= 1) {
                     Robot.ballSubsystem.setIntakeDeploySpeed(0);
@@ -55,9 +63,10 @@ public class DefaultBallCommand extends TSafeCommand {
                 startTime = timeSinceInitialized();
                 Robot.ballSubsystem.setIntakeDeploySpeed(-0.4);
             }
-        }
+        }*/
+
         // Internal intake or outake motors
-        if (Robot.oi.getOutake()) {  // Outake take priority if both are pressed
+        if (Robot.oi.getOutake()) {  // Outake takes priority if both are pressed
             setOutakeState(true);
         } else if (Robot.oi.getIntakeBall()) {
             setIntakeState(true);
