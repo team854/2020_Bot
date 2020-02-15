@@ -34,7 +34,8 @@ public class DefaultBallCommand extends TSafeCommand {
     protected void execute() {
         // Deploy
         // TODO: All motor speeds are dummy values - they will need to be adjusted
-        if (Robot.oi.getIntakeDeploy()) {
+
+        if (Robot.oi.getIntakeDeployDown()) {
             if (isIntakeDeployDown) {
                 if (timeSinceInitialized()-startTime >= 1) {
                     Robot.ballSubsystem.setIntakeDeploySpeed(0);
@@ -44,7 +45,7 @@ public class DefaultBallCommand extends TSafeCommand {
                 startTime = timeSinceInitialized();
                 Robot.ballSubsystem.setIntakeDeploySpeed(1);
             }
-        } else {
+        } else if (Robot.oi.getIntakeDeployUp()) {
             if (!isIntakeDeployDown) {
                 if (timeSinceInitialized()-startTime >= 1) {
                     Robot.ballSubsystem.setIntakeDeploySpeed(0);

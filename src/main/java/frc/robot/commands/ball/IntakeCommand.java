@@ -27,7 +27,8 @@ public class IntakeCommand extends TSafeCommand {
     
     @Override
     protected void initialize() {
-        Robot.oi.setIntakeDeploy(deployState);
+        // TODO: Fix this
+        //Robot.oi.setIntakeDeploy(deployState);
         Robot.oi.overrideIntakeBall(intakeState);
     }
 

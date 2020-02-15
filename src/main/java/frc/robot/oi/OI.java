@@ -46,7 +46,7 @@ public class OI extends TOi {
     private DriveSelector   driveSelector       = new DriveSelector();
 
     // BallCommand stuff
-    private TToggle         intakeDeploy        = new TToggle(operatorController, TButton.RIGHT_BUMPER);
+    //private TToggle         intakeDeploy        = new TToggle(driverController, TButton.);
 
     // Overrides
     private boolean outakeOverrided     = false;
@@ -116,21 +116,24 @@ public class OI extends TOi {
         speedPidToggle.set(state);
     }
 
-    public boolean getIntakeDeploy() {
-        // True is deployed, or should be
-        return intakeDeploy.get();
+    public boolean getIntakeDeployUp() {
+        return driverController.getButton(TButton.RIGHT_BUMPER);
     }
 
-    public void setIntakeDeploy(boolean state) {
-        intakeDeploy.set(state);
+    public boolean getIntakeDeployDown() {
+        return driverController.getButton(TButton.LEFT_BUMPER);
     }
+
+    /*public void setIntakeDeploy(boolean state) {
+        intakeDeploy.set(state);
+    }*/
 
     public boolean getIntakeBall() {
         // True means intaking
         if (intakeBallOverrided) {
             return intakeBallOverrideState;
         }
-        return operatorController.getButton(TTrigger.RIGHT);
+        return driverController.getButton(TButton.A);
     }
 
     public void overrideIntakeBall(boolean state) {
@@ -147,7 +150,7 @@ public class OI extends TOi {
         if (outakeOverrided) {
             return outakeOverrideState;
         }
-        return operatorController.getButton(TTrigger.LEFT);
+        return driverController.getButton(TButton.B);
     }
 
     public void overrideOutake(boolean state) {
@@ -159,21 +162,21 @@ public class OI extends TOi {
         outakeOverrided = false;
     }
 
-    public boolean getHookUp() {
-        return driverController.getButton(TButton.RIGHT_BUMPER);
-    }
-
-    public boolean getHookDown() {
+    public boolean getWinchHookUp() {
         return driverController.getButton(TTrigger.RIGHT);
     }
 
-    public boolean getWinchDown() {
+    public boolean getWinchHookDown() {
+        return driverController.getButton(TTrigger.LEFT);
+    }
+
+    /*public boolean getWinchDown() {
         return driverController.getButton(TTrigger.LEFT);
     }
 
     public boolean getWinchUp() {
         return driverController.getButton(TButton.LEFT_BUMPER);
-    }
+    }*/
 
     public boolean getCPSpinTimes() {
         return driverController.getButton(TButton.Y);
