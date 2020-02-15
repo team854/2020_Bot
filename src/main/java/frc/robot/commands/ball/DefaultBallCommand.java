@@ -43,7 +43,7 @@ public class DefaultBallCommand extends TSafeCommand {
             } else {
                 isIntakeDeployDown = true;
                 startTime = timeSinceInitialized();
-                Robot.ballSubsystem.setIntakeDeploySpeed(1);
+                Robot.ballSubsystem.setIntakeDeploySpeed(0.4);
             }
         } else if (Robot.oi.getIntakeDeployUp()) {
             if (!isIntakeDeployDown) {
@@ -53,7 +53,7 @@ public class DefaultBallCommand extends TSafeCommand {
             } else {
                 isIntakeDeployDown = false;
                 startTime = timeSinceInitialized();
-                Robot.ballSubsystem.setIntakeDeploySpeed(-1);
+                Robot.ballSubsystem.setIntakeDeploySpeed(-0.4);
             }
         }
         // Internal intake or outake motors

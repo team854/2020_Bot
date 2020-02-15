@@ -198,7 +198,7 @@ public class OI extends TOi {
         speedPidToggle.updatePeriodic();
         driverRumble.updatePeriodic();
         operatorRumble.updatePeriodic();
-        intakeDeploy.updatePeriodic();
+        //intakeDeploy.updatePeriodic();
 
         // Update all SmartDashboard values
         SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());
