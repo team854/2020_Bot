@@ -176,7 +176,7 @@ public class OI extends TOi {
     }
 
     public boolean getCPSpinTimes() {
-        return operatorController.getButton(TButton.Y);
+        return driverController.getButton(TButton.Y);
     }
 
     public boolean getCPColorSpin() {

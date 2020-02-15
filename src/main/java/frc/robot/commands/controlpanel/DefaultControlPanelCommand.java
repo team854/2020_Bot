@@ -43,6 +43,14 @@ public class DefaultControlPanelCommand extends TSafeCommand {
     protected void execute() {
         // TODO: Motor values are dummy - should rotate less than 60 rpm
 
+        // Temporary, for testing:
+        if (Robot.oi.getCPSpinTimes()) {
+            Robot.controlPanelSubsystem.setMotorSpeed(0.5);
+        } else {
+            Robot.controlPanelSubsystem.setMotorSpeed(0);
+        }
+
+        /*
         // Start spin routine
         if (Robot.oi.getCPSpinTimes() && spinRoutine == false && colorRoutine == false) {
             spinRoutine = true;
@@ -96,6 +104,7 @@ public class DefaultControlPanelCommand extends TSafeCommand {
             colorRoutine = false;
             return;
         }
+        */
     }
 
     @Override
