@@ -160,19 +160,19 @@ public class OI extends TOi {
     }
 
     public boolean getHookUp() {
-        return driverController.getButton(TButton.LEFT_BUMPER);
-    }
-
-    public boolean getHookDown() {
         return driverController.getButton(TButton.RIGHT_BUMPER);
     }
 
-    public boolean getWinchDown() {
+    public boolean getHookDown() {
         return driverController.getButton(TTrigger.RIGHT);
     }
 
-    public boolean getWinchUp() {
+    public boolean getWinchDown() {
         return driverController.getButton(TTrigger.LEFT);
+    }
+
+    public boolean getWinchUp() {
+        return driverController.getButton(TButton.LEFT_BUMPER);
     }
 
     public boolean getCPSpinTimes() {

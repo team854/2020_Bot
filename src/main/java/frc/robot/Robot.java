@@ -69,7 +69,7 @@ public class Robot extends TimedRobot {
         oi = new OI();
         oi.init();
 
-        for (final TSubsystem subsystem : subsystemLs) {
+        for (TSubsystem subsystem : subsystemLs) {
             subsystem.init();
         }
 
@@ -184,7 +184,7 @@ public class Robot extends TimedRobot {
     private void updatePeriodic() {
 
         // Update all subsystems
-        for (final TSubsystem subsystem : subsystemLs) {
+        for (TSubsystem subsystem : subsystemLs) {
             subsystem.updatePeriodic();
         }
     }
