@@ -105,19 +105,17 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             prevDesiredMotorSpeeds = desiredMotorSpeeds;
         }
 
-        if ((motorSpeeds.left > 0 && desiredMotorSpeeds.left > 0 && motorSpeeds.left >= desiredMotorSpeeds.left)
+        motorSpeeds = desiredMotorSpeeds;
+        if (!((motorSpeeds.left > 0 && desiredMotorSpeeds.left > 0 && motorSpeeds.left >= desiredMotorSpeeds.left)
                 || (motorSpeeds.left < 0 && desiredMotorSpeeds.left < 0 && motorSpeeds.left <= desiredMotorSpeeds.left)
             && (motorSpeeds.right > 0 && desiredMotorSpeeds.right > 0 && motorSpeeds.right >= desiredMotorSpeeds.right)
-                || (motorSpeeds.right < 0 && desiredMotorSpeeds.right < 0 && motorSpeeds.right <= desiredMotorSpeeds.right)) {
-            // The motor speeds have reached or exceeded the original desired speeds - curve is complete
-            motorSpeeds = desiredMotorSpeeds;
-        } else {
+                || (motorSpeeds.right < 0 && desiredMotorSpeeds.right < 0 && motorSpeeds.right <= desiredMotorSpeeds.right))) {
             // y = mx + b accel. curve, where x is time
             // The curve is scaled based on the difference between the current speed and desired speed...
             // ... when the joystick was originally moved
             curTime = timeSinceInitialized();
-            motorSpeeds.left    *= ((curTime - startTime) * 2 + 0) * ((desiredMotorSpeeds.left - prevDesiredMotorSpeeds.left) / RobotConst.MOTOR_SPEED_PERCENT);
-            motorSpeeds.right   *= ((curTime - startTime) * 2 + 0) * ((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right) / RobotConst.MOTOR_SPEED_PERCENT);
+            motorSpeeds.left    *= ((curTime - startTime) * 1 + 0) * (Math.abs((desiredMotorSpeeds.left - prevDesiredMotorSpeeds.left)) / RobotConst.MOTOR_SPEED_PERCENT);
+            motorSpeeds.right   *= ((curTime - startTime) * 1 + 0) * (Math.abs((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right)) / RobotConst.MOTOR_SPEED_PERCENT);
         }
 
         driveSubsystem.setSpeed(motorSpeeds);
