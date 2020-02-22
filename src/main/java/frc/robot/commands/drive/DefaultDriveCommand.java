@@ -25,6 +25,9 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
 
     TDifferentialDrive differentialDrive = new TDifferentialDrive();
 
+    double  startTime       = 0;  // For accel. curve
+    TSpeeds prevDesiredMotorSpeeds = new TSpeeds();
+
     public DefaultDriveCommand() {
         // The drive logic will be handled by the TDefaultDriveCommand
         // which also contains the requires(driveSubsystem) statement
@@ -68,7 +71,10 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
 
         TStick singleStickSide = oi.getSelectedSingleStickSide();
 
-        TSpeeds motorSpeeds;
+        TSpeeds motorSpeeds = new TSpeeds();
+        TSpeeds desiredMotorSpeeds;
+
+        double curTime;
 
         switch (oi.getSelectedDriveType()) {
 
@@ -77,22 +83,43 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             if (singleStickSide == TStick.LEFT) {
                 singleStickPosition = leftStickPosition;
             }
-            motorSpeeds = differentialDrive.arcadeDrive(singleStickPosition);
+            desiredMotorSpeeds = differentialDrive.arcadeDrive(singleStickPosition);
             break;
 
         case TANK:
-            motorSpeeds = differentialDrive.tankDrive(leftStickPosition, rightStickPosition);
+            desiredMotorSpeeds = differentialDrive.tankDrive(leftStickPosition, rightStickPosition);
             break;
 
         case ARCADE:
         default:
-            motorSpeeds = differentialDrive.arcadeDrive(leftStickPosition, rightStickPosition);
+            desiredMotorSpeeds = differentialDrive.arcadeDrive(leftStickPosition, rightStickPosition);
             break;
         }
 
+        desiredMotorSpeeds.left *= RobotConst.MOTOR_SPEED_PERCENT;
+        desiredMotorSpeeds.right *= RobotConst.MOTOR_SPEED_PERCENT;
 
-        motorSpeeds.left *= RobotConst.MOTOR_SPEED_PERCENT;
-        motorSpeeds.right *= RobotConst.MOTOR_SPEED_PERCENT;
+        if (desiredMotorSpeeds.left != prevDesiredMotorSpeeds.left || desiredMotorSpeeds.right != prevDesiredMotorSpeeds.right) {
+            // The joystick movement has changed - the timer for the curve needs to restart
+            startTime = timeSinceInitialized();
+            prevDesiredMotorSpeeds = desiredMotorSpeeds;
+        }
+
+        if ((motorSpeeds.left > 0 && desiredMotorSpeeds.left > 0 && motorSpeeds.left >= desiredMotorSpeeds.left)
+                || (motorSpeeds.left < 0 && desiredMotorSpeeds.left < 0 && motorSpeeds.left <= desiredMotorSpeeds.left)
+            && (motorSpeeds.right > 0 && desiredMotorSpeeds.right > 0 && motorSpeeds.right >= desiredMotorSpeeds.right)
+                || (motorSpeeds.right < 0 && desiredMotorSpeeds.right < 0 && motorSpeeds.right <= desiredMotorSpeeds.right)) {
+            // The motor speeds have reached or exceeded the original desired speeds - curve is complete
+            motorSpeeds = desiredMotorSpeeds;
+        } else {
+            // y = mx + b accel. curve, where x is time
+            // The curve is scaled based on the difference between the current speed and desired speed...
+            // ... when the joystick was originally moved
+            curTime = timeSinceInitialized();
+            motorSpeeds.left    *= ((curTime - startTime) * 2 + 0) * ((desiredMotorSpeeds.left - prevDesiredMotorSpeeds.left) / RobotConst.MOTOR_SPEED_PERCENT);
+            motorSpeeds.right   *= ((curTime - startTime) * 2 + 0) * ((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right) / RobotConst.MOTOR_SPEED_PERCENT);
+        }
+
         driveSubsystem.setSpeed(motorSpeeds);
     }
 

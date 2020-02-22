@@ -157,7 +157,7 @@ public class RobotMap {
             CLIMB_DEPLOY_PWM_SPEED_CONTROLLER_TYPE      = TPwmSpeedControllerType.TALON_SR;
             CLIMB_DEPLOY_PWM_MOTOR_ISINVERTED           = TConst.NOT_INVERTED;
             CLIMB_WINCH_PWM_SPEED_CONTROLLER_ADDRESS    = 7;
-            CLIMB_WINCH_PWM_SPEED_CONTROLLER_TYPE       = TPwmSpeedControllerType.TALON_SR;
+            CLIMB_WINCH_PWM_SPEED_CONTROLLER_TYPE       = TPwmSpeedControllerType.VICTOR;
             CLIMB_WINCH_PWM_MOTOR_ISINVERTED            = TConst.NOT_INVERTED;
 
             GYRO_PORT       = 1;
