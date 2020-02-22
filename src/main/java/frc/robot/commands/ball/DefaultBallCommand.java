@@ -85,8 +85,8 @@ public class DefaultBallCommand extends TSafeCommand {
 
         if (state) {
             setOutakeState(false);  // Can't intake and outake at the same time
-            Robot.ballSubsystem.setOutakeSpeed(-1);  // Outake motors spin backwards while intaking
-            Robot.ballSubsystem.setIntakeWheelsSpeed(1);
+            Robot.ballSubsystem.setOutakeSpeed(1);  // Outake motors spin backwards while intaking
+            Robot.ballSubsystem.setIntakeWheelsSpeed(-1);
             Robot.ballSubsystem.setIntakeCordsSpeed(1);
         } else {
             Robot.ballSubsystem.setIntakeWheelsSpeed(0);
@@ -108,7 +108,7 @@ public class DefaultBallCommand extends TSafeCommand {
 
         if (state) {
             setIntakeState(false);  // Can't intake and outake at the same time
-            Robot.ballSubsystem.setOutakeSpeed(1);
+            Robot.ballSubsystem.setOutakeSpeed(-1);
             Robot.ballSubsystem.setIntakeCordsSpeed(1);
         } else {
             Robot.ballSubsystem.setOutakeSpeed(0);

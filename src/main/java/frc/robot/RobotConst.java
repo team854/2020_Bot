@@ -14,7 +14,7 @@ public class RobotConst {
 
     public static final double  DRIVE_GYRO_PID_KP;
     public static final double  DRIVE_GYRO_PID_KI;
-    public static final double  DRIVE_MAX_ROTATION_OUTPUT     = 0.45;
+    public static final double  DRIVE_MAX_ROTATION_OUTPUT     = 0.30;
 
     public static final double  DRIVE_SPEED_PID_KP;
     public static final double  DRIVE_SPEED_PID_KI;
@@ -38,7 +38,7 @@ public class RobotConst {
     public static final double  COLOR_CONFIDENCE = 0.95;
 
     // Motor speed %
-    public static final double  MOTOR_SPEED_PERCENT = 0.40;
+    public static final double  MOTOR_SPEED_PERCENT = 0.60;
 
     public static enum Direction {
         FORWARD, BACKWARD
