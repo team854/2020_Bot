@@ -114,8 +114,21 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             // The curve is scaled based on the difference between the current speed and desired speed...
             // ... when the joystick was originally moved
             curTime = timeSinceInitialized();
-            motorSpeeds.left    *= ((curTime - startTime) * 1 + 0) * (Math.abs((desiredMotorSpeeds.left - prevDesiredMotorSpeeds.left)) / RobotConst.MOTOR_SPEED_PERCENT);
-            motorSpeeds.right   *= ((curTime - startTime) * 1 + 0) * (Math.abs((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right)) / RobotConst.MOTOR_SPEED_PERCENT);
+            double leftMult     = ((curTime - startTime) * RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B) * (Math.abs((desiredMotorSpeeds.left  - prevDesiredMotorSpeeds.left))  / RobotConst.MOTOR_SPEED_PERCENT);
+            double rightMult    = ((curTime - startTime) * RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B) * (Math.abs((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right)) / RobotConst.MOTOR_SPEED_PERCENT);
+            // Left
+            if (desiredMotorSpeeds.left - prevDesiredMotorSpeeds.left > 0) {
+                motorSpeeds.left    *= leftMult;
+            } else {
+                // The bot is slowing down, multiply by the inverse curve instead
+                motorSpeeds.left    *= 1/leftMult;
+            }
+            // Right
+            if (desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right > 0) {
+                motorSpeeds.right   *= rightMult;
+            } else {
+                motorSpeeds.right   *= 1/rightMult;
+            }
         }
 
         driveSubsystem.setSpeed(motorSpeeds);
