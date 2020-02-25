@@ -117,11 +117,11 @@ public class OI extends TOi {
     }
 
     public boolean getIntakeDeployUp() {
-        return driverController.getButton(TButton.RIGHT_BUMPER);
+        return driverController.getButton(TButton.Y);
     }
 
     public boolean getIntakeDeployDown() {
-        return driverController.getButton(TButton.LEFT_BUMPER);
+        return driverController.getButton(TButton.X);
     }
 
     /*public void setIntakeDeploy(boolean state) {
@@ -162,24 +162,24 @@ public class OI extends TOi {
         outakeOverrided = false;
     }
 
-    public boolean getWinchHookUp() {
+    public boolean getHookUp() {
+        return driverController.getButton(TButton.RIGHT_BUMPER);
+    }
+
+    public boolean getHookDown() {
         return driverController.getButton(TTrigger.RIGHT);
     }
 
-    public boolean getWinchHookDown() {
-        return driverController.getButton(TTrigger.LEFT);
-    }
-
-    /*public boolean getWinchDown() {
+    public boolean getWinchDown() {
         return driverController.getButton(TTrigger.LEFT);
     }
 
     public boolean getWinchUp() {
         return driverController.getButton(TButton.LEFT_BUMPER);
-    }*/
+    }
 
     public boolean getCPSpinTimes() {
-        return driverController.getButton(TButton.Y);
+        return operatorController.getButton(TButton.Y);
     }
 
     public boolean getCPColorSpin() {

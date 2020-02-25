@@ -38,7 +38,7 @@ public class DefaultBallCommand extends TSafeCommand {
         if (Robot.oi.getIntakeDeployDown()) {
             Robot.ballSubsystem.setIntakeDeploySpeed(0.2);
         } else if (Robot.oi.getIntakeDeployUp()) {
-            Robot.ballSubsystem.setIntakeDeploySpeed(-0.2);
+            Robot.ballSubsystem.setIntakeDeploySpeed(-0.75);
         } else {
             Robot.ballSubsystem.setIntakeDeploySpeed(0);
         }
