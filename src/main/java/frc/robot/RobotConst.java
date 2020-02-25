@@ -38,10 +38,10 @@ public class RobotConst {
     public static final double  COLOR_CONFIDENCE = 0.90;
 
     // Motor speed %
-    public static final double  MOTOR_SPEED_PERCENT = 0.60;
+    public static final double  MOTOR_SPEED_PERCENT = .95;
 
     // Speed accel. curve y = mx + b variables
-    public static final double ACCEL_CURVE_M    = 1;
+    public static final double ACCEL_CURVE_M    = 1.5;
     public static final double ACCEL_CURVE_B    = 0;
 
     public static enum Direction {
