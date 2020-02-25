@@ -35,7 +35,7 @@ public class RobotConst {
     public static final double  ROBOT_LENGTH = 35.25;
 
     // Confidence threshold for color detection
-    public static final double  COLOR_CONFIDENCE = 0.95;
+    public static final double  COLOR_CONFIDENCE = 0.90;
 
     // Motor speed %
     public static final double  MOTOR_SPEED_PERCENT = 0.60;
