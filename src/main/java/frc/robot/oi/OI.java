@@ -186,6 +186,10 @@ public class OI extends TOi {
         return operatorController.getButton(TButton.B);
     }
 
+    public boolean getCPManualSpin() {
+        return operatorController.getButton(TButton.X);
+    }
+
     public boolean getCanDriveTest() {
         return driverController.getButton(TButton.X) || operatorController.getButton(TButton.X);
     }

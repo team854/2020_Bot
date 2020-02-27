@@ -1,10 +1,9 @@
 package frc.robot.commands.controlpanel;
-
+import frc.robot.RobotConst;
+import frc.robot.subsystems.ControlPanelSubsystem;
 import com.torontocodingcollective.TConst;
 import com.torontocodingcollective.commands.TSafeCommand;
 import frc.robot.Robot;
-import frc.robot.RobotConst;
-import frc.robot.subsystems.ControlPanelSubsystem;
 import edu.wpi.first.wpilibj.util.Color;
 
 
@@ -43,14 +42,14 @@ public class DefaultControlPanelCommand extends TSafeCommand {
     protected void execute() {
         // TODO: Motor values are dummy - should rotate less than 60 rpm
 
-        // Temporary, for testing:
-        if (Robot.oi.getCPSpinTimes()) {
+        if (Robot.oi.getCPManualSpin()) {
             Robot.controlPanelSubsystem.setMotorSpeed(0.5);
-        } else {
-            Robot.controlPanelSubsystem.setMotorSpeed(0);
+            // Cancel any running jobs
+            spinRoutine = false;
+            colorRoutine = false;
+            return;
         }
 
-        /*
         // Start spin routine
         if (Robot.oi.getCPSpinTimes() && spinRoutine == false && colorRoutine == false) {
             spinRoutine = true;
@@ -104,7 +103,12 @@ public class DefaultControlPanelCommand extends TSafeCommand {
             colorRoutine = false;
             return;
         }
-        */
+
+        // If nothing is happening
+        if (colorRoutine == false && spinRoutine == false) {
+            Robot.controlPanelSubsystem.setMotorSpeed(0);
+            return;
+        }
     }
 
     @Override
