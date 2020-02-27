@@ -60,6 +60,18 @@ public class OI extends TOi {
         return driverController.getStickPosition(stick);
     }
 
+    public TStickPosition getDriverDriveStickPosition(TStick stick) {
+        return driverController.getStickPosition(stick);
+    }
+
+    public TStickPosition getOperatorDriveStickPosition(TStick stick) {
+        return operatorController.getStickPosition(stick);
+    }
+
+    public boolean isDriverActive() {
+        return driverController.isStickActive(TStick.LEFT) || driverController.isStickActive(TStick.RIGHT)
+    }
+
     @Override
     public boolean getReset() {
         return driverController.getButton(TButton.START);

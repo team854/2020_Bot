@@ -27,6 +27,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
 
     double  startTime       = 0;  // For accel. curve
     TSpeeds prevDesiredMotorSpeeds = new TSpeeds();
+    boolean operatorControlling = false;
 
     public DefaultDriveCommand() {
         // The drive logic will be handled by the TDefaultDriveCommand
@@ -64,10 +65,15 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         // Check the driver controller buttons
         super.execute();
 
-        // Drive according to the type of drive selected in the
-        // operator input.
-        TStickPosition leftStickPosition = oi.getDriveStickPosition(TStick.LEFT);
-        TStickPosition rightStickPosition = oi.getDriveStickPosition(TStick.RIGHT);
+        // Check whether Driver is moving or not, otherwise the Operator can control
+        TStickPosition leftStickPosition = oi.getOperatorDriveStickPosition(TStick.LEFT);
+        TStickPosition rightStickPosition = oi.getOperatorDriveStickPosition(TStick.RIGHT);
+        operatorControlling = true;
+        if (oi.isDriverActive()) {
+            leftStickPosition = oi.getDriverDriveStickPosition(TStick.LEFT);
+            rightStickPosition = oi.getDriverDriveStickPosition(TStick.RIGHT);
+            operatorControlling = false;
+        }
 
         TStick singleStickSide = oi.getSelectedSingleStickSide();
 
@@ -106,7 +112,7 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
         }
 
         motorSpeeds = desiredMotorSpeeds;
-        if (!((motorSpeeds.left > 0 && desiredMotorSpeeds.left > 0 && motorSpeeds.left >= desiredMotorSpeeds.left)
+        if (!operatorControlling && !((motorSpeeds.left > 0 && desiredMotorSpeeds.left > 0 && motorSpeeds.left >= desiredMotorSpeeds.left)
                 || (motorSpeeds.left < 0 && desiredMotorSpeeds.left < 0 && motorSpeeds.left <= desiredMotorSpeeds.left)
             && (motorSpeeds.right > 0 && desiredMotorSpeeds.right > 0 && motorSpeeds.right >= desiredMotorSpeeds.right)
                 || (motorSpeeds.right < 0 && desiredMotorSpeeds.right < 0 && motorSpeeds.right <= desiredMotorSpeeds.right))) {
@@ -131,6 +137,12 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             } else {
                 motorSpeeds.right   *= rightDeaccel;
             }
+        }
+
+        // Slow down operator
+        if (operatorControlling) {
+            motorSpeeds.left    *= RobotConst.OPERATOR_SPEED_PERCENT;
+            motorSpeeds.right   *= RobotConst.OPERATOR_SPEED_PERCENT;
         }
 
         driveSubsystem.setSpeed(motorSpeeds);

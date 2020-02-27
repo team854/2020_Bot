@@ -44,12 +44,14 @@ public class RobotConst {
     public static final double ACCEL_CURVE_M    = 1.5;
     public static final double ACCEL_CURVE_B    = 0;
 
+    public static final double OPERATOR_SPEED_PERCENT = 0.40;
+
     public static enum Direction {
         FORWARD, BACKWARD
     };
 
     // Number of color sections to rotate through on the CP
-    public static final int CP_SECTIONS;
+    public static final int CP_SECTIONS = 26;  // Two more sections than 3 perfect rotations
 
     // The TorontoCodingCollective framework was developed to run on different
     // robots through the use of multiple mappings and constants.
@@ -84,8 +86,6 @@ public class RobotConst {
             ULTRASONIC_VOLTAGE_80IN       = 0.76;
             ULTRASONIC_RECESS             = 10.0;
 
-            CP_SECTIONS = 26;  // Two more sections than 3 perfect rotations
-
             break;
 
         case TEST_ROBOT:
@@ -113,8 +113,6 @@ public class RobotConst {
             ULTRASONIC_VOLTAGE_40IN       = 0.96;
             ULTRASONIC_VOLTAGE_80IN       = 1.85;
             ULTRASONIC_RECESS             = 8.0;
-
-            CP_SECTIONS = 26;  // Two more sections than 3 perfect rotations
 
             break;
         }
