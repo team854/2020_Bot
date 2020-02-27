@@ -69,7 +69,7 @@ public class OI extends TOi {
     }
 
     public boolean isDriverActive() {
-        return driverController.isStickActive(TStick.LEFT) || driverController.isStickActive(TStick.RIGHT)
+        return driverController.isStickActive(TStick.LEFT) || driverController.isStickActive(TStick.RIGHT);
     }
 
     @Override
