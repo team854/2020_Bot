@@ -114,20 +114,22 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             // The curve is scaled based on the difference between the current speed and desired speed...
             // ... when the joystick was originally moved
             curTime = timeSinceInitialized();
-            double leftMult     = ((curTime - startTime) * RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B) * (Math.abs((desiredMotorSpeeds.left  - prevDesiredMotorSpeeds.left))  / RobotConst.MOTOR_SPEED_PERCENT);
-            double rightMult    = ((curTime - startTime) * RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B) * (Math.abs((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right)) / RobotConst.MOTOR_SPEED_PERCENT);
+            double leftAccel    = ((curTime - startTime) * RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B) / (Math.abs((desiredMotorSpeeds.left  - prevDesiredMotorSpeeds.left))  / RobotConst.MOTOR_SPEED_PERCENT);
+            double leftDeaccel  = ((curTime - startTime) * -RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B + 1) / (Math.abs((desiredMotorSpeeds.left  - prevDesiredMotorSpeeds.left))  / RobotConst.MOTOR_SPEED_PERCENT);
+            double rightAccel   = ((curTime - startTime) * RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B) / (Math.abs((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right)) / RobotConst.MOTOR_SPEED_PERCENT);
+            double rightDeaccel = ((curTime - startTime) * -RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B + 1) / (Math.abs((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right)) / RobotConst.MOTOR_SPEED_PERCENT);
             // Left
             if (desiredMotorSpeeds.left - prevDesiredMotorSpeeds.left > 0) {
-                motorSpeeds.left    *= leftMult;
+                motorSpeeds.left    *= leftAccel;
             } else {
                 // The bot is slowing down, multiply by the inverse curve instead
-                motorSpeeds.left    *= 1/leftMult;
+                motorSpeeds.left    *= leftDeaccel;
             }
             // Right
             if (desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right > 0) {
-                motorSpeeds.right   *= rightMult;
+                motorSpeeds.right   *= rightAccel;
             } else {
-                motorSpeeds.right   *= 1/rightMult;
+                motorSpeeds.right   *= rightDeaccel;
             }
         }
 

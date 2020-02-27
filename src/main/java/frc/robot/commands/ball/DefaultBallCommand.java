@@ -32,16 +32,15 @@ public class DefaultBallCommand extends TSafeCommand {
 
     @Override
     protected void execute() {
-        // Deploy
-        // TODO: All motor speeds are dummy values - they will need to be adjusted
+        // Deploy - NO MOTOR RIGHT NOW
 
-        if (Robot.oi.getIntakeDeployDown()) {
+        /*if (Robot.oi.getIntakeDeployDown()) {
             Robot.ballSubsystem.setIntakeDeploySpeed(0.2);
         } else if (Robot.oi.getIntakeDeployUp()) {
             Robot.ballSubsystem.setIntakeDeploySpeed(-0.75);
         } else {
             Robot.ballSubsystem.setIntakeDeploySpeed(0);
-        }
+        }*/
 
         /*if (Robot.oi.getIntakeDeployDown()) {
             if (isIntakeDeployDown) {

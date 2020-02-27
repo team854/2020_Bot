@@ -50,7 +50,7 @@ public class Robot extends TimedRobot {
     // Add all of the subsystems to the subsystem list
     static {
         subsystemLs.add(driveSubsystem);
-        subsystemLs.add(pneumaticsSubsystem);
+        //subsystemLs.add(pneumaticsSubsystem);
         subsystemLs.add(powerSubsystem);
         subsystemLs.add(cameraSubsystem);
         subsystemLs.add(controlPanelSubsystem);

@@ -43,11 +43,11 @@ public class DefaultPneumaticsCommand extends TSafeCommand {
     @Override
     protected void execute() {
 
-        if (Robot.oi.getCompressorEnabled()) {
+        /*if (Robot.oi.getCompressorEnabled()) {
             Robot.pneumaticsSubsystem.enableCompressor();
         } else {
             Robot.pneumaticsSubsystem.disableCompressor();
-        }
+        }*/
     }
 
     // Make this return true when this Command no longer needs to run execute()

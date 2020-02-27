@@ -40,13 +40,9 @@ public class OI extends TOi {
     private TGameController operatorController  = new TGameController_Logitech(1);
     private TRumbleManager  operatorRumble      = new TRumbleManager("Operator", operatorController);
 
-    private TToggle         compressorToggle    = new TToggle(driverController, TStick.LEFT);
     private TToggle         speedPidToggle      = new TToggle(driverController, TStick.RIGHT);
 
     private DriveSelector   driveSelector       = new DriveSelector();
-
-    // BallCommand stuff
-    //private TToggle         intakeDeploy        = new TToggle(driverController, TButton.);
 
     // Overrides
     private boolean outakeOverrided     = false;
@@ -57,10 +53,6 @@ public class OI extends TOi {
     @Override
     public boolean getCancelCommand() {
         return driverController.getButton(TButton.BACK);
-    }
-
-    public boolean getCompressorEnabled() {
-        return compressorToggle.get();
     }
 
     @Override
@@ -103,37 +95,33 @@ public class OI extends TOi {
         return speedPidToggle.get();
     }
 
-    public boolean getTurboOn() {
+    /*public boolean getTurboOn() {
         return driverController.getButton(TButton.LEFT_BUMPER);
-    }
+    }*/
 
     public void init() {
-        compressorToggle.set(true);
-        speedPidToggle.set(false);
+        //speedPidToggle.set(false);
     }
 
     public void setSpeedPidEnabled(boolean state) {
         speedPidToggle.set(state);
     }
 
+    // NOT USED
     public boolean getIntakeDeployUp() {
         return driverController.getButton(TButton.Y);
     }
-
+    // NOT USED
     public boolean getIntakeDeployDown() {
         return driverController.getButton(TButton.X);
     }
-
-    /*public void setIntakeDeploy(boolean state) {
-        intakeDeploy.set(state);
-    }*/
 
     public boolean getIntakeBall() {
         // True means intaking
         if (intakeBallOverrided) {
             return intakeBallOverrideState;
         }
-        return driverController.getButton(TButton.A);
+        return driverController.getButton(TTrigger.RIGHT);
     }
 
     public void overrideIntakeBall(boolean state) {
@@ -150,7 +138,7 @@ public class OI extends TOi {
         if (outakeOverrided) {
             return outakeOverrideState;
         }
-        return driverController.getButton(TButton.B);
+        return driverController.getButton(TTrigger.LEFT);
     }
 
     public void overrideOutake(boolean state) {
@@ -163,19 +151,19 @@ public class OI extends TOi {
     }
 
     public boolean getHookUp() {
-        return driverController.getButton(TButton.RIGHT_BUMPER);
+        return operatorController.getButton(TButton.RIGHT_BUMPER);
     }
 
     public boolean getHookDown() {
-        return driverController.getButton(TTrigger.RIGHT);
+        return operatorController.getButton(TTrigger.RIGHT);
     }
 
     public boolean getWinchDown() {
-        return driverController.getButton(TTrigger.LEFT);
+        return operatorController.getButton(TTrigger.LEFT);
     }
 
     public boolean getWinchUp() {
-        return driverController.getButton(TButton.LEFT_BUMPER);
+        return operatorController.getButton(TButton.LEFT_BUMPER);
     }
 
     public boolean getCPSpinTimes() {
@@ -194,7 +182,6 @@ public class OI extends TOi {
     public void updatePeriodic() {
 
         // Update all Toggles
-        compressorToggle.updatePeriodic();
         speedPidToggle.updatePeriodic();
         driverRumble.updatePeriodic();
         operatorRumble.updatePeriodic();
@@ -202,7 +189,6 @@ public class OI extends TOi {
 
         // Update all SmartDashboard values
         SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());
-        SmartDashboard.putBoolean("Compressor Toggle", getCompressorEnabled());
         SmartDashboard.putString("Driver Controller", driverController.toString());
     }
 }
