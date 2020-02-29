@@ -3,11 +3,12 @@ package frc.robot.subsystems;
 import com.torontocodingcollective.sensors.encoder.TDioQuadEncoder;
 //import com.torontocodingcollective.sensors.gyro.TAnalogGyro;
 import com.torontocodingcollective.sensors.gyro.TNavXGyro;
+import com.torontocodingcollective.sensors.gyro.TSpiGyro;
 //import com.torontocodingcollective.sensors.gyro.TSpiGyro;
 import com.torontocodingcollective.sensors.ultrasonic.TUltrasonicSensor;
 import com.torontocodingcollective.speedcontroller.TPwmSpeedController;
 import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
-
+import com.torontocodingcollective.subsystem.TDriveSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotConst;
 import frc.robot.RobotMap;
@@ -41,12 +42,12 @@ public class PwmDriveSubsystem extends TGyroDriveSubsystem {
                 // Left Encoder
                 new TDioQuadEncoder(
                         RobotMap.LEFT_DRIVE_DIO_ENCODER_PORT1,
-                        RobotMap.LEFT_DRIVE_DIO_ENCODER_PORT1 + 1,
+                        RobotMap.LEFT_DRIVE_DIO_ENCODER_PORT1 - 1,
                         RobotMap.LEFT_DRIVE_DIO_ENCODER_ISINVERTED),
                 // Right Encoder
                 new TDioQuadEncoder(
                         RobotMap.RIGHT_DRIVE_DIO_ENCODER_PORT1,
-                        RobotMap.RIGHT_DRIVE_DIO_ENCODER_PORT1 + 1,
+                        RobotMap.RIGHT_DRIVE_DIO_ENCODER_PORT1 - 1,
                         RobotMap.RIGHT_DRIVE_DIO_ENCODER_ISINVERTED),
 
                 // Encoder counts per inch

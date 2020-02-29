@@ -261,8 +261,10 @@ public class TDifferentialDrive {
     // less than 0.6 are cut in half, and values above 0.6 are
     // scaled to be from 0.3 to 1.0.
     private double scale(double value) {
-
-        if (value > 1.0) {
+        // TODO: Test this and decide
+        return value;
+        
+        /*if (value > 1.0) {
             value = 1.0;
         }
 
@@ -282,7 +284,7 @@ public class TDifferentialDrive {
             return 0.3 + (value - 0.6) * 7.0 / 4.0;
         }
 
-        return -0.3 + (value + 0.6) * 7.0 / 4.0;
+        return -0.3 + (value + 0.6) * 7.0 / 4.0;*/
     }
 
     /**

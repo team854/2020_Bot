@@ -75,6 +75,12 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             operatorControlling = false;
         }
 
+        if (operatorControlling) {
+            // Increase turning power - we're always on arcade drive anyway
+            rightStickPosition.x    *= RobotConst.OPERATOR_TURN_SPEED_PERCENT;
+            leftStickPosition.y     *= RobotConst.OPERATOR_DRIVE_SPEED_PERCENT;
+        }
+
         TStick singleStickSide = oi.getSelectedSingleStickSide();
 
         TSpeeds motorSpeeds = new TSpeeds();
@@ -121,9 +127,9 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             // ... when the joystick was originally moved
             curTime = timeSinceInitialized();
             double leftAccel    = ((curTime - startTime) * RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B) / (Math.abs((desiredMotorSpeeds.left  - prevDesiredMotorSpeeds.left))  / RobotConst.MOTOR_SPEED_PERCENT);
-            double leftDeaccel  = ((curTime - startTime) * -RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B + 1) / (Math.abs((desiredMotorSpeeds.left  - prevDesiredMotorSpeeds.left))  / RobotConst.MOTOR_SPEED_PERCENT);
+            double leftDeaccel  = ((curTime - startTime) * -RobotConst.DEACCEL_CURVE_M + RobotConst.DEACCEL_CURVE_B + 1) / (Math.abs((desiredMotorSpeeds.left  - prevDesiredMotorSpeeds.left))  / RobotConst.MOTOR_SPEED_PERCENT);
             double rightAccel   = ((curTime - startTime) * RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B) / (Math.abs((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right)) / RobotConst.MOTOR_SPEED_PERCENT);
-            double rightDeaccel = ((curTime - startTime) * -RobotConst.ACCEL_CURVE_M + RobotConst.ACCEL_CURVE_B + 1) / (Math.abs((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right)) / RobotConst.MOTOR_SPEED_PERCENT);
+            double rightDeaccel = ((curTime - startTime) * -RobotConst.DEACCEL_CURVE_M + RobotConst.DEACCEL_CURVE_B + 1) / (Math.abs((desiredMotorSpeeds.right - prevDesiredMotorSpeeds.right)) / RobotConst.MOTOR_SPEED_PERCENT);
             // Left
             if (desiredMotorSpeeds.left - prevDesiredMotorSpeeds.left > 0) {
                 motorSpeeds.left    *= leftAccel;
@@ -139,11 +145,11 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             }
         }
 
-        // Slow down operator
-        if (operatorControlling) {
+        // Slow down operator - DONE ABOVE ALREADY
+        /*if (operatorControlling) {
             motorSpeeds.left    *= RobotConst.OPERATOR_SPEED_PERCENT;
             motorSpeeds.right   *= RobotConst.OPERATOR_SPEED_PERCENT;
-        }
+        }*/
 
         driveSubsystem.setSpeed(motorSpeeds);
     }

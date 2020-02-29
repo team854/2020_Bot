@@ -10,7 +10,7 @@ public class AutoSelector {
     public static final String  ROBOT_RIGHT         = "Robot Outake Facing Our Goal";
     public static final String  ROBOT_RIGHT_EDGE    = "Robot Right Edge Facing Trench";
     public static final String  ROBOT_CENTER        = "Robot Center";  // Against wall
-    public static final String  ROBOT_LEFT          = "Robot Outake facing Opp dropoff";  // Against wall
+    public static final String  ROBOT_LEFT          = "Robot Outake facing Opp dropoff";
 
 
     public static SendableChooser<String> pattern;
@@ -60,6 +60,8 @@ public class AutoSelector {
         delayTime.addOption(DELAY_TIME_5, DELAY_TIME_5);
 
         SmartDashboard.putData("Delay Time", delayTime);
+
+        SmartDashboard.putString("Debug", "");
 
     }
 

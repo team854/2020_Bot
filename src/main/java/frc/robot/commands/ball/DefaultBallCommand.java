@@ -7,10 +7,10 @@ import frc.robot.Robot;
 public class DefaultBallCommand extends TSafeCommand {
 
     private static final    String  COMMAND_NAME =   DefaultBallCommand.class.getSimpleName();
-    private                 boolean intakeState =    false;
-    private                 boolean outakeState =    false;
     private                 double  startTime   =    0;
     private                 boolean isIntakeDeployDown = false;
+
+    private enum OutakeState {TOP_OUTAKE, BOTTOM_OUTAKE, NO_OUTAKE};
 
     public DefaultBallCommand() {
         super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
@@ -32,15 +32,6 @@ public class DefaultBallCommand extends TSafeCommand {
 
     @Override
     protected void execute() {
-        // Deploy - NO MOTOR RIGHT NOW
-
-        /*if (Robot.oi.getIntakeDeployDown()) {
-            Robot.ballSubsystem.setIntakeDeploySpeed(0.2);
-        } else if (Robot.oi.getIntakeDeployUp()) {
-            Robot.ballSubsystem.setIntakeDeploySpeed(-0.75);
-        } else {
-            Robot.ballSubsystem.setIntakeDeploySpeed(0);
-        }*/
 
         /*if (Robot.oi.getIntakeDeployDown()) {
             if (isIntakeDeployDown) {
@@ -66,57 +57,55 @@ public class DefaultBallCommand extends TSafeCommand {
 
         // Internal intake or outake motors
         if (Robot.oi.getOutake()) {  // Outake takes priority if both are pressed
-            setOutakeState(true);
+            setOutakeState(OutakeState.TOP_OUTAKE);
+        } else if (Robot.oi.getBottomOutake()) {
+            setOutakeState(OutakeState.BOTTOM_OUTAKE);
         } else if (Robot.oi.getIntakeBall()) {
             setIntakeState(true);
         } else {
             setIntakeState(false);
-            setOutakeState(false);
+            setOutakeState(OutakeState.NO_OUTAKE);
+        }
+
+        // Intake arm down happens if intaking as well, in setIntakeState()
+        if (Robot.oi.getIntakeDeployUp()) {
+            Robot.ballSubsystem.setIntakeDeploySpeed(-1);
+        } else if (Robot.oi.getIntakeDeployDown()) {
+            Robot.ballSubsystem.setIntakeDeploySpeed(1);
         }
     }
 
     protected void setIntakeState(boolean state) {
         // True means start intaking, False means stop
-        // TODO: All motor speeds are dummy values - they will need to be adjusted
-        //       Some should be made negative, for some 1 is too fast
-
-        intakeState = state;
 
         if (state) {
-            setOutakeState(false);  // Can't intake and outake at the same time
-            Robot.ballSubsystem.setOutakeSpeed(1);  // Outake motors spin backwards while intaking
+            setOutakeState(OutakeState.NO_OUTAKE);  // Can't intake and outake at the same time
+            Robot.ballSubsystem.setOutakeSpeed(0.33);  // Outake motors spin backwards while intaking
             Robot.ballSubsystem.setIntakeWheelsSpeed(-1);
-            Robot.ballSubsystem.setIntakeCordsSpeed(1);
+            Robot.ballSubsystem.setIntakeCordsSpeed(0.33);
+            Robot.ballSubsystem.setIntakeDeploySpeed(1);  // Push arm down when intaking
         } else {
             Robot.ballSubsystem.setIntakeWheelsSpeed(0);
             Robot.ballSubsystem.setIntakeCordsSpeed(0);
             Robot.ballSubsystem.setOutakeSpeed(0);
+            Robot.ballSubsystem.setIntakeDeploySpeed(0);
         }
     }
 
-    protected boolean getIntakeState() {
-        return intakeState;
-    }
-
-    protected void setOutakeState(boolean state) {
-        // True means start outaking, False means stop
-        // TODO: All motor speeds are dummy values - they will need to be adjusted
-        //       Some should be made negative, for some 1 is too fast
-
-        outakeState = state;
-
-        if (state) {
+    protected void setOutakeState(OutakeState state) {
+        if (state == OutakeState.TOP_OUTAKE) {
             setIntakeState(false);  // Can't intake and outake at the same time
             Robot.ballSubsystem.setOutakeSpeed(-1);
             Robot.ballSubsystem.setIntakeCordsSpeed(1);
-        } else {
+        } else if (state == OutakeState.BOTTOM_OUTAKE) {
+            setIntakeState(false);
+            Robot.ballSubsystem.setOutakeSpeed(0);
+            Robot.ballSubsystem.setIntakeCordsSpeed(-0.90);
+            Robot.ballSubsystem.setIntakeWheelsSpeed(1);
+        } else if (state == OutakeState.NO_OUTAKE) {
             Robot.ballSubsystem.setOutakeSpeed(0);
             Robot.ballSubsystem.setIntakeCordsSpeed(0);
         }
-    }
-
-    protected boolean getOutakeState() {
-        return outakeState;
     }
 
     @Override

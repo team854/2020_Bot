@@ -14,13 +14,14 @@ import frc.robot.oi.AutoSelector;
 import frc.robot.oi.OI;
 import frc.robot.subsystems.CameraSubsystem;
 import frc.robot.subsystems.CanDriveSubsystem;
-import frc.robot.subsystems.CanDriveTestSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.ControlPanelSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.PowerSubsystem;
 import frc.robot.subsystems.PwmDriveSubsystem;
 import frc.robot.subsystems.BallSubsystem;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -41,8 +42,6 @@ public class Robot extends TimedRobot {
     public static final BallSubsystem           ballSubsystem           = new BallSubsystem();
     public static final ClimbSubsystem          climbSubsystem          = new ClimbSubsystem();
 
-    public static final CanDriveTestSubsystem   canDriveTestSubsystem   = new CanDriveTestSubsystem();
-
     public static OI                            oi;
 
     private Command                             autoCommand;
@@ -56,7 +55,6 @@ public class Robot extends TimedRobot {
         subsystemLs.add(controlPanelSubsystem);
         subsystemLs.add(ballSubsystem);
         subsystemLs.add(climbSubsystem);
-        //subsystemLs.add(canDriveTestSubsystem);
     }
 
     /**
@@ -110,13 +108,14 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
 
         // Turn on the drive pids for auto
-        Robot.oi.setSpeedPidEnabled(true);
-        driveSubsystem.enableSpeedPids();
+        //Robot.oi.setSpeedPidEnabled(true);
+        //driveSubsystem.enableSpeedPids();
 
         // Reset the gyro and the encoders
         Robot.driveSubsystem.setGyroAngle(0);
         Robot.driveSubsystem.resetEncoders();
 
+        SmartDashboard.putString("Debug", "");
         // Initialize the robot command after initializing the game data
         // because the game data will be used in the auto command.
         autoCommand = new AutonomousCommand();

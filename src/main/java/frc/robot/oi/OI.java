@@ -119,13 +119,12 @@ public class OI extends TOi {
         speedPidToggle.set(state);
     }
 
-    // NOT USED
     public boolean getIntakeDeployUp() {
-        return driverController.getButton(TButton.Y);
+        return driverController.getButton(TButton.LEFT_BUMPER);
     }
-    // NOT USED
+
     public boolean getIntakeDeployDown() {
-        return driverController.getButton(TButton.X);
+        return driverController.getButton(TButton.RIGHT_BUMPER);
     }
 
     public boolean getIntakeBall() {
@@ -162,6 +161,10 @@ public class OI extends TOi {
         outakeOverrided = false;
     }
 
+    public boolean getBottomOutake() {
+        return driverController.getButton(TButton.Y);
+    }
+
     public boolean getHookUp() {
         return operatorController.getButton(TButton.RIGHT_BUMPER);
     }
@@ -188,10 +191,6 @@ public class OI extends TOi {
 
     public boolean getCPManualSpin() {
         return operatorController.getButton(TButton.X);
-    }
-
-    public boolean getCanDriveTest() {
-        return driverController.getButton(TButton.X) || operatorController.getButton(TButton.X);
     }
 
     @Override

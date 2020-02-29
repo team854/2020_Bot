@@ -6,10 +6,12 @@ import com.torontocodingcollective.commands.gyroDrive.TDriveOnHeadingDistanceCom
 import com.torontocodingcollective.commands.gyroDrive.TRotateToHeadingCommand;
 import frc.robot.commands.ball.OutakeCommand;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.commands.ball.IntakeCommand;
 import frc.robot.oi.AutoSelector;
 import frc.robot.commands.auto.AutoDelay;
+import com.torontocodingcollective.speedcontroller.TSpeeds;
 
 /**
  * AutonomousCommand
@@ -70,14 +72,15 @@ public class AutonomousCommand extends CommandGroup {
                 switch (robotStartPosition) {
                     case AutoSelector.ROBOT_LEFT:
                         // Move to goal
-                        addSequential(new TDriveOnHeadingDistanceCommand(84.75, 0, -0.5, 5, true,
-                                                Robot.oi, Robot.driveSubsystem));
+                        SmartDashboard.putString("Debug", "Started to move");
+                        addSequential(new TDriveOnHeadingDistanceCommand(20, 0, -0.5, 5, true,
+                                                Robot.oi, Robot.driveSubsystem));  // 84.75 inches before
                         addSequential(new AutoDelay(0.1));
                         // Score
                         addSequential(new OutakeCommand(true));
-                        addSequential(new AutoDelay(1));
+                        addSequential(new AutoDelay(2));
                         addSequential(new OutakeCommand(false));
-                        moveAcross();
+                        //moveAcross();
                         break;
                     case AutoSelector.ROBOT_RIGHT_EDGE:
                         break;

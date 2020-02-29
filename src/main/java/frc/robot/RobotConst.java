@@ -43,15 +43,19 @@ public class RobotConst {
     // Speed accel. curve y = mx + b variables
     public static final double ACCEL_CURVE_M    = 1.5;
     public static final double ACCEL_CURVE_B    = 0;
+    public static final double DEACCEL_CURVE_M  = 1;
+    public static final double DEACCEL_CURVE_B  = 0;
 
-    public static final double OPERATOR_SPEED_PERCENT = 0.40;
-
+    public static final double OPERATOR_DRIVE_SPEED_PERCENT = 0.60;
+    public static final double OPERATOR_TURN_SPEED_PERCENT  = 0.95;
+    
     public static enum Direction {
         FORWARD, BACKWARD
     };
-
+    
     // Number of color sections to rotate through on the CP
     public static final int CP_SECTIONS = 26;  // Two more sections than 3 perfect rotations
+    public static final double CP_SPIN_SPEED = 0.33;
 
     // The TorontoCodingCollective framework was developed to run on different
     // robots through the use of multiple mappings and constants.
@@ -65,7 +69,7 @@ public class RobotConst {
 
             // The low gear speed should be set just below the
             // maximum loaded speed of the robot
-            MAX_LOW_GEAR_SPEED = 925.0; // Encoder counts/sec
+            MAX_LOW_GEAR_SPEED = 19000; // Encoder counts/sec
             //MAX_HIGH_GEAR_SPEED = 900.0;
 
             // Typically set the integral gain at 1/20 of the
@@ -75,11 +79,11 @@ public class RobotConst {
             DRIVE_GYRO_PID_KP = .0015;
             DRIVE_GYRO_PID_KI = .0005;
 
-            DRIVE_SPEED_PID_KP = 0.75;
+            DRIVE_SPEED_PID_KP = 0.2;
             //DRIVE_SPEED_PID_KI = DRIVE_SPEED_PID_KP / 20.0;
-            DRIVE_SPEED_PID_KI = 0.0375;
+            DRIVE_SPEED_PID_KI = 0.0000;
 
-            ENCODER_COUNTS_PER_INCH = 54;
+            ENCODER_COUNTS_PER_INCH = 105;
 
             ULTRASONIC_VOLTAGE_20IN       = 0.18;
             ULTRASONIC_VOLTAGE_40IN       = 0.38;

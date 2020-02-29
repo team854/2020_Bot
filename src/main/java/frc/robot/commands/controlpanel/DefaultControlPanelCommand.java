@@ -43,7 +43,7 @@ public class DefaultControlPanelCommand extends TSafeCommand {
         // TODO: Motor values are dummy - should rotate less than 60 rpm
 
         if (Robot.oi.getCPManualSpin()) {
-            Robot.controlPanelSubsystem.setMotorSpeed(0.5);
+            Robot.controlPanelSubsystem.setMotorSpeed(RobotConst.CP_SPIN_SPEED);
             // Cancel any running jobs
             spinRoutine = false;
             colorRoutine = false;
@@ -55,7 +55,7 @@ public class DefaultControlPanelCommand extends TSafeCommand {
             spinRoutine = true;
             prevColor   = Robot.controlPanelSubsystem.getColorSensorColor();
             numColors   = 0;  // First color
-            Robot.controlPanelSubsystem.setMotorSpeed(1);
+            Robot.controlPanelSubsystem.setMotorSpeed(RobotConst.CP_SPIN_SPEED);
             return;
         }
 
@@ -93,7 +93,7 @@ public class DefaultControlPanelCommand extends TSafeCommand {
             } else if (gameColor == ControlPanelSubsystem.YELLOW_TARGET) {
                 targetColor = ControlPanelSubsystem.GREEN_TARGET;
             }
-            Robot.controlPanelSubsystem.setMotorSpeed(1);
+            Robot.controlPanelSubsystem.setMotorSpeed(RobotConst.CP_SPIN_SPEED);
             return;
         }
         
