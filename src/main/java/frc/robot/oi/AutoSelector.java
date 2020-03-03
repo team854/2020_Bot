@@ -34,10 +34,10 @@ public class AutoSelector {
 
         // Robot Position Options
         robotStartPosition = new SendableChooser<String>();
-        robotStartPosition.setDefaultOption(ROBOT_CENTER, ROBOT_CENTER);
+        robotStartPosition.setDefaultOption(ROBOT_RIGHT, ROBOT_RIGHT);
+        robotStartPosition.addOption(ROBOT_CENTER, ROBOT_CENTER);
         robotStartPosition.addOption(ROBOT_LEFT, ROBOT_LEFT);
         robotStartPosition.addOption(ROBOT_RIGHT_EDGE, ROBOT_RIGHT_EDGE);
-        robotStartPosition.addOption(ROBOT_RIGHT, ROBOT_RIGHT);
 
         SmartDashboard.putData("Robot Start", robotStartPosition);
 

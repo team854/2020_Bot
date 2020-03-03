@@ -35,9 +35,9 @@ public class Robot extends TimedRobot {
     public static final List<TSubsystem>        subsystemLs             = new ArrayList<TSubsystem>();
 
     public static final PwmDriveSubsystem       driveSubsystem          = new PwmDriveSubsystem();
-    public static final PneumaticsSubsystem     pneumaticsSubsystem     = new PneumaticsSubsystem();
-    public static final PowerSubsystem          powerSubsystem          = new PowerSubsystem();
-    public static final CameraSubsystem         cameraSubsystem         = new CameraSubsystem();
+    //public static final PneumaticsSubsystem     pneumaticsSubsystem     = new PneumaticsSubsystem();
+    //public static final PowerSubsystem          powerSubsystem          = new PowerSubsystem();
+    //public static final CameraSubsystem         cameraSubsystem         = new CameraSubsystem();
     public static final ControlPanelSubsystem   controlPanelSubsystem   = new ControlPanelSubsystem();
     public static final BallSubsystem           ballSubsystem           = new BallSubsystem();
     public static final ClimbSubsystem          climbSubsystem          = new ClimbSubsystem();
@@ -50,8 +50,8 @@ public class Robot extends TimedRobot {
     static {
         subsystemLs.add(driveSubsystem);
         //subsystemLs.add(pneumaticsSubsystem);
-        subsystemLs.add(powerSubsystem);
-        subsystemLs.add(cameraSubsystem);
+        //subsystemLs.add(powerSubsystem);
+        //subsystemLs.add(cameraSubsystem);
         subsystemLs.add(controlPanelSubsystem);
         subsystemLs.add(ballSubsystem);
         subsystemLs.add(climbSubsystem);

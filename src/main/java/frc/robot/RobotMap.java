@@ -127,7 +127,7 @@ public class RobotMap {
             LEFT_DRIVE_PWM_SPEED_CONTROLLER_TYPE              = TPwmSpeedControllerType.SPARK;
             LEFT_DRIVE_PWM_MOTOR_ISINVERTED                   = TConst.NOT_INVERTED;
             LEFT_DRIVE_DIO_ENCODER_PORT1                      = 1;
-            LEFT_DRIVE_DIO_ENCODER_ISINVERTED                 = TConst.INVERTED;
+            LEFT_DRIVE_DIO_ENCODER_ISINVERTED                 = TConst.NOT_INVERTED;
 
             RIGHT_DRIVE_PWM_SPEED_CONTROLLER_ADDRESS          = 0;
             RIGHT_DRIVE_PWM_SPEED_CONTROLLER_TYPE             = TPwmSpeedControllerType.SPARK;

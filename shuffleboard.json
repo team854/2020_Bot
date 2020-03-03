@@ -365,7 +365,7 @@
             "content": {
               "_type": "PID Controller",
               "_source0": "network_table:///SmartDashboard/Gyro PID",
-              "_title": "SmartDashboard/Gyro PID"
+              "_title": "/SmartDashboard/Gyro PID"
             }
           },
           "3,4": {
@@ -617,7 +617,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Specified Target Color",
-              "_title": "SmartDashboard/Specified Target Color"
+              "_title": "/SmartDashboard/Specified Target Color"
             }
           },
           "3,1": {
@@ -628,7 +628,7 @@
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/Auto Pattern",
-              "_title": "SmartDashboard/Auto Pattern"
+              "_title": "/SmartDashboard/Auto Pattern"
             }
           },
           "5,1": {
@@ -639,7 +639,7 @@
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/Delay Time",
-              "_title": "SmartDashboard/Delay Time"
+              "_title": "/SmartDashboard/Delay Time"
             }
           },
           "6,1": {
@@ -650,7 +650,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Debug",
-              "_title": "SmartDashboard/Debug"
+              "_title": "/SmartDashboard/Debug"
             }
           },
           "3,0": {
@@ -661,7 +661,33 @@
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/Robot Start",
-              "_title": "SmartDashboard/Robot Start"
+              "_title": "/SmartDashboard/Robot Start"
+            }
+          },
+          "0,0": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///SmartDashboard/Gyro PID",
+              "_title": "SmartDashboard/Gyro PID"
+            }
+          },
+          "0,2": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Gyro",
+              "_source0": "network_table:///SmartDashboard/Gyro",
+              "_title": "SmartDashboard/Gyro",
+              "Visuals/Major tick spacing": 45.0,
+              "Visuals/Starting angle": 180.0,
+              "Visuals/Show tick mark ring": true,
+              "Visuals/Counter clockwise": false
             }
           }
         }

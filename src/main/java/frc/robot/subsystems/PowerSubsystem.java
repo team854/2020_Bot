@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class PowerSubsystem extends TSubsystem {
 
-    PowerDistributionPanel pdp = new PowerDistributionPanel();
+    //PowerDistributionPanel pdp = new PowerDistributionPanel();
 
-    public double getMotorCurrent(int port) {
+    /*public double getMotorCurrent(int port) {
         return pdp.getCurrent(port);
-    };
+    };*/
 
     @Override
     public void init() {
@@ -26,7 +26,7 @@ public class PowerSubsystem extends TSubsystem {
     // Periodically update the dashboard and any PIDs or sensors
     @Override
     public void updatePeriodic() {
-        SmartDashboard.putData("PDP", pdp);
+        //SmartDashboard.putData("PDP", pdp);
     }
 
     @Override

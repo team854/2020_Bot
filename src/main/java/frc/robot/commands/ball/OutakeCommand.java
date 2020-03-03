@@ -3,16 +3,15 @@ package frc.robot.commands.ball;
 import com.torontocodingcollective.TConst;
 import com.torontocodingcollective.commands.TSafeCommand;
 import frc.robot.Robot;
+import frc.robot.subsystems.BallSubsystem.OutakeState;
 
 public class OutakeCommand extends TSafeCommand {
 
     private static final    String  COMMAND_NAME    = OutakeCommand.class.getSimpleName();
-    private                 boolean outakeState     = false;
 
-    public OutakeCommand(boolean state) {
-        super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
+    public OutakeCommand(double timeout) {
+        super(timeout, Robot.oi);
         requires(Robot.ballSubsystem);
-        this.outakeState = state;
     }
 
     @Override
@@ -24,20 +23,20 @@ public class OutakeCommand extends TSafeCommand {
     }
     
     @Override
-    protected void initialize() {
-        Robot.oi.overrideOutake(outakeState);
+    protected void initialize() {}
+
+    @Override
+    protected void execute() {
+        Robot.ballSubsystem.setOutakeState(OutakeState.TOP_OUTAKE);
     }
 
     @Override
-    protected void execute() {}
-
-    @Override
     protected boolean isFinished() {
-        return true;
+        return super.isFinished();
     }
 
     @Override
     protected void end() {
-        // TODO: Move motors?
+        Robot.ballSubsystem.setOutakeState(OutakeState.NO_OUTAKE);
     }
 }

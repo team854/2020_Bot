@@ -12,6 +12,7 @@ import frc.robot.commands.ball.IntakeCommand;
 import frc.robot.oi.AutoSelector;
 import frc.robot.commands.auto.AutoDelay;
 import com.torontocodingcollective.speedcontroller.TSpeeds;
+import com.torontocodingcollective.commands.gyroDrive.TDriveBackwardsOnHeadingDistanceCommand;
 
 /**
  * AutonomousCommand
@@ -70,16 +71,13 @@ public class AutonomousCommand extends CommandGroup {
                 break;
             case AutoSelector.PATTERN_SCORE:
                 switch (robotStartPosition) {
-                    case AutoSelector.ROBOT_LEFT:
+                    case AutoSelector.ROBOT_RIGHT:
                         // Move to goal
-                        SmartDashboard.putString("Debug", "Started to move");
-                        addSequential(new TDriveOnHeadingDistanceCommand(20, 0, -0.5, 5, true,
+                        addSequential(new TDriveBackwardsOnHeadingDistanceCommand(84.75, 180, -0.5, 10, true,
                                                 Robot.oi, Robot.driveSubsystem));  // 84.75 inches before
                         addSequential(new AutoDelay(0.1));
                         // Score
-                        addSequential(new OutakeCommand(true));
-                        addSequential(new AutoDelay(2));
-                        addSequential(new OutakeCommand(false));
+                        addSequential(new OutakeCommand(2));
                         //moveAcross();
                         break;
                     case AutoSelector.ROBOT_RIGHT_EDGE:
@@ -105,9 +103,7 @@ public class AutonomousCommand extends CommandGroup {
                                             Robot.oi, Robot.driveSubsystem));
                         addSequential(new AutoDelay(0.1));
                         // Score
-                        addSequential(new OutakeCommand(true));
-                        addSequential(new AutoDelay(2));
-                        addSequential(new OutakeCommand(false));
+                        addSequential(new OutakeCommand(2));
                         moveAcross();
                         break;
                 }

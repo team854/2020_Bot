@@ -31,6 +31,8 @@ public class BallSubsystem extends TSubsystem {
                                                         RobotMap.OUTAKE_PWM_MOTOR_ISINVERTED
                                                     );
 
+    public enum OutakeState {TOP_OUTAKE, BOTTOM_OUTAKE, NO_OUTAKE};
+
     @Override
     public void init() {}
 
@@ -69,6 +71,39 @@ public class BallSubsystem extends TSubsystem {
 
     public double getOutakeSpeed() {
         return outake.get();
+    }
+
+    public void setIntakeState(boolean state) {
+        // True means start intaking, False means stop
+
+        if (state) {
+            setOutakeState(OutakeState.NO_OUTAKE);  // Can't intake and outake at the same time
+            setOutakeSpeed(0.33);  // Outake motors spin backwards while intaking
+            setIntakeWheelsSpeed(-1);
+            setIntakeCordsSpeed(0.33);
+            setIntakeDeploySpeed(1);  // Push arm down when intaking
+        } else {
+            setIntakeWheelsSpeed(0);
+            setIntakeCordsSpeed(0);
+            setOutakeSpeed(0);
+            setIntakeDeploySpeed(0);
+        }
+    }
+
+    public void setOutakeState(OutakeState state) {
+        if (state == OutakeState.TOP_OUTAKE) {
+            setIntakeState(false);  // Can't intake and outake at the same time
+            setOutakeSpeed(-1);
+            setIntakeCordsSpeed(1);
+        } else if (state == OutakeState.BOTTOM_OUTAKE) {
+            setIntakeState(false);
+            setOutakeSpeed(0);
+            setIntakeCordsSpeed(-0.90);
+            setIntakeWheelsSpeed(1);
+        } else if (state == OutakeState.NO_OUTAKE) {
+            setOutakeSpeed(0);
+            setIntakeCordsSpeed(0);
+        }
     }
 
     @Override

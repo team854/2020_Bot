@@ -18,7 +18,7 @@ public class DefaultPneumaticsCommand extends TSafeCommand {
         super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
 
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.pneumaticsSubsystem);
+        //requires(Robot.pneumaticsSubsystem);
     }
 
     @Override
