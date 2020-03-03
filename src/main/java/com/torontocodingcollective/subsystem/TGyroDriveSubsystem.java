@@ -157,6 +157,35 @@ public abstract class TGyroDriveSubsystem extends TDriveSubsystem {
     }
 
     /**
+     * Set the speeds on the motors using a gyroPID to follow the specified heading
+     * at the specified speed.
+     * <p>
+     * If the heading is not currently close to the desired heading, the robot may
+     * pivot on the spot before driving on the specified angle. The PID is only
+     * enabled when the angle is within 20 degrees of the target.
+     *
+     * @param speedSetpoint
+     *            0 < speed < 1.0 negative speeds are not allowed
+     * @param heading
+     *            to drive at 0 <= heading < 360
+     */
+    public void driveBackwardsOnHeading(double speedSetpoint, double heading) {
+
+        // If the gain is set to zero, the pid cannot be enabled
+        if (gyroPid.getP() == 0 && gyroPid.getI() == 0) {
+            System.out.println("The GyroPid cannot be enabled until"
+                    + " the PID Kp or Ki value is set.");
+            return;
+        }
+
+        this.mode = Mode.DRIVE_ON_HEADING;
+
+        this.speedSetpoint = speedSetpoint;
+
+        enableGyroPid((heading+180) % 360);
+    }
+
+    /**
      * Enable the gyroPID with the specified heading as a setpoint
      * 
      * @param heading
@@ -302,10 +331,18 @@ public abstract class TGyroDriveSubsystem extends TDriveSubsystem {
 
             // If the error is negative, then drive the left motor
             // in reverse.
-            steering = 1.0;
+            if (speedSetpoint > 0) {
             if (angleError < 0) {
                 leftSpeed = -leftSpeed;
-                steering = -1.0;
+            }
+            }
+            else {
+
+                // When driving backwards, the left motor will
+                // be positive when the error is positive
+                if (angleError > 0) {
+                    leftSpeed = -leftSpeed;
+                }
             }
 
             // Drive the motors in the opposite direction to get close
@@ -319,12 +356,23 @@ public abstract class TGyroDriveSubsystem extends TDriveSubsystem {
 
         // When steering with the gyroPid, one of the
         // wheels is slowed proportional to the steering
+        if (speedSetpoint > 0) {
         if (steering > 0) {
             rightSpeed = leftSpeed * (1.0 - steering);
         }
 
         if (steering < 0) {
             leftSpeed = rightSpeed * (1.0 + steering);
+        }
+        }
+        else {
+            if (steering > 0) {
+                leftSpeed = rightSpeed * (1.0 - steering);
+            }
+
+            if (steering < 0) {
+                rightSpeed = leftSpeed * (1.0 + steering);
+            }
         }
 
         setSpeed(leftSpeed, rightSpeed);

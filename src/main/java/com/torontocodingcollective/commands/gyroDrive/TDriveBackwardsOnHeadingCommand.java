@@ -14,11 +14,11 @@ import com.torontocodingcollective.subsystem.TGyroDriveSubsystem;
  * The command can be extended to provide additional stopping variations
  * (distance, sensor, etc).
  */
-public class TDriveOnHeadingCommand extends TSafeCommand {
+public class TDriveBackwardsOnHeadingCommand extends TSafeCommand {
 
-    private static final String COMMAND_NAME = 
-            TDriveOnHeadingCommand.class.getSimpleName();
-    
+    private static final String COMMAND_NAME =
+            TDriveBackwardsOnHeadingCommand.class.getSimpleName();
+
     private double                    heading;
     private double                    speed;
     private final boolean             brakeWhenFinished;
@@ -27,8 +27,13 @@ public class TDriveOnHeadingCommand extends TSafeCommand {
     private final TGyroDriveSubsystem driveSubsystem;
 
     /**
-     * Construct a new DriveOnHeadingCommand
-     * 
+     * Construct a new DriveBackwardsOnHeadingCommand
+     * <p>
+     * The heading passed in should be the heading expected for the drive backwards
+     * not the drive forward.  For instance, if the robot is pointed to a heading
+     * of zero degrees and is expected to drive straight backwards, the heading
+     * would be 180 degrees.
+     *
      * @param heading
      *            in the range 0 <= heading < 360. If the heading is not in this
      *            range, then the command will end immediately and print an error to
@@ -46,14 +51,19 @@ public class TDriveOnHeadingCommand extends TSafeCommand {
      * @param driveSubsystem
      *            that extends the TGyroDriveSubsystem
      */
-    public TDriveOnHeadingCommand(double heading, double speed, double timeout, TOi oi,
+    public TDriveBackwardsOnHeadingCommand(double heading, double speed, double timeout, TOi oi,
             TGyroDriveSubsystem driveSubsystem) {
         this(heading, speed, timeout, TConst.BRAKE_WHEN_FINISHED, oi, driveSubsystem);
     }
 
     /**
      * Construct a new DriveOnHeadingCommand
-     * 
+     * <p>
+     * The heading passed in should be the heading expected for the drive backwards
+     * not the drive forward.  For instance, if the robot is pointed to a heading
+     * of zero degrees and is expected to drive straight backwards, the heading
+     * would be 180 degrees.
+     *
      * @param heading
      *            in the range 0 <= heading < 360. If the heading is not in this
      *            range, then the command will end immediately and print an error to
@@ -74,7 +84,7 @@ public class TDriveOnHeadingCommand extends TSafeCommand {
      * @param driveSubsystem
      *            that extends the TGyroDriveSubsystem
      */
-    public TDriveOnHeadingCommand(double heading, double speed, double timeout, 
+    public TDriveBackwardsOnHeadingCommand(double heading, double speed, double timeout,
             boolean brakeWhenFinished, TOi oi,
             TGyroDriveSubsystem driveSubsystem) {
 
@@ -86,7 +96,7 @@ public class TDriveOnHeadingCommand extends TSafeCommand {
 
         if (heading < 0 || heading >= 360) {
             System.out.println(
-                    "Heading on " + COMMAND_NAME 
+                    "Heading on " + COMMAND_NAME
                     + " must be >= 0 or < 360 degrees. " + heading
                     + " is invalid.  Command ending immediately");
             error = true;
@@ -94,6 +104,8 @@ public class TDriveOnHeadingCommand extends TSafeCommand {
             return;
         }
 
+        // Set the speed negative to drive backwards.
+        // Allow the user to put in a positive or negative speed.
         setSpeed(speed);
 
         this.heading = heading;
@@ -102,18 +114,18 @@ public class TDriveOnHeadingCommand extends TSafeCommand {
 
     @Override
     protected String getCommandName() { return COMMAND_NAME; }
-    
+
     @Override
-    protected String getParmDesc() { 
-        return "heading " + this.heading 
-                + ", speed " + this.speed 
-                + ", brake " + this.brakeWhenFinished 
-                + ", " + super.getParmDesc(); 
+    protected String getParmDesc() {
+        return "heading " + this.heading
+                + ", speed " + this.speed
+                + ", brake " + this.brakeWhenFinished
+                + ", " + super.getParmDesc();
     }
 
     @Override
     protected void initialize() {
-        
+
         // Only print the command start message
         // if this command was not subclassed
         if (getCommandName().equals(COMMAND_NAME)) {
@@ -138,7 +150,7 @@ public class TDriveOnHeadingCommand extends TSafeCommand {
         // have no effect. If the speed is changing for
         // acceleration or deceleration purposes, then
         // this call will adjust the speed setpoint.
-        driveSubsystem.driveOnHeading(speed, heading);
+        driveSubsystem.driveBackwardsOnHeading(speed, heading);
     }
 
     /**
@@ -149,15 +161,13 @@ public class TDriveOnHeadingCommand extends TSafeCommand {
      * <p>
      * This routine could be used to support acceleration and deceleration when
      * driving on a heading.
-     * 
+     *
      * @param speed
-     *            the speed to drive at when tracking the heading. The speed should
-     *            be between 0 and 1.0. Negative speeds should not be used. If a
-     *            value is given outside this range, then the value will be
-     *            normalized to be within the range
+     *            the speed to drive at when tracking the heading. The speed will
+     *            be adjusted to be negative.
      */
     public void setSpeed(double speed) {
-        this.speed = Math.min(1.0, Math.max(speed, -1));
+        this.speed = -Math.abs(speed);
     }
 
     @Override

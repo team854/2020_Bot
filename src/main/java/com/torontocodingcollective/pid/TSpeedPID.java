@@ -15,6 +15,7 @@ public class TSpeedPID extends PIDController {
 
     private double output;
     private double totalError;
+    private double error;
     private boolean isEnabled;
 
     public TSpeedPID(double kP) {
@@ -54,6 +55,7 @@ public class TSpeedPID extends PIDController {
         if (Math.abs(super.getSetpoint()) < 0.03) {
             totalError = 0;
             output = 0;
+            error = 0;
             return 0;
         }
 
@@ -66,7 +68,7 @@ public class TSpeedPID extends PIDController {
         }
 
         // Calculate the error
-        double error = super.getSetpoint() - normalizedRate;
+        error = super.getSetpoint() - normalizedRate;
 
         // Get proportional output
         double proportionalOutput = getP() * error;
@@ -140,13 +142,23 @@ public class TSpeedPID extends PIDController {
     }
 
     public void enable() {
-        isEnabled = true;
-        totalError = 0;
-        output = 0;
+        if (!isEnabled) {
+            isEnabled = true;
+            totalError = 0;
+            output = 0;
+        }
     }
 
     public double get() {
         return output;
+    }
+
+    public double getError() {
+        return error;
+    }
+
+    public double getTotalError() {
+        return totalError;
     }
 
     public boolean isEnabled() {
