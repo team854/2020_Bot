@@ -9,7 +9,7 @@ import com.torontocodingcollective.oi.TStick;
 import com.torontocodingcollective.oi.TStickPosition;
 import com.torontocodingcollective.oi.TToggle;
 import com.torontocodingcollective.oi.TTrigger;
-
+import frc.robot.subsystems.CameraSubsystem.Camera;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -44,11 +44,14 @@ public class OI extends TOi {
 
     private DriveSelector   driveSelector       = new DriveSelector();
 
-    // Overrides
-    private boolean outakeOverrided     = false;
-    private boolean outakeOverrideState = false;
-    private boolean intakeBallOverrided     = false;
-    private boolean intakeBallOverrideState = false;
+    private TToggle cameraToggle = new TToggle(operatorController, TButton.A);
+
+    public Camera getCamera() {
+    	if (cameraToggle.get()) {
+    		return Camera.FRONT;
+    	}
+    	return Camera.REAR;
+    }
 
     @Override
     public boolean getCancelCommand() {
@@ -113,6 +116,9 @@ public class OI extends TOi {
 
     public void init() {
         //speedPidToggle.set(false);
+
+        // True is front
+        cameraToggle.set(true);
     }
 
     public void setSpeedPidEnabled(boolean state) {
@@ -128,37 +134,11 @@ public class OI extends TOi {
     }
 
     public boolean getIntakeBall() {
-        // True means intaking
-        if (intakeBallOverrided) {
-            return intakeBallOverrideState;
-        }
         return driverController.getButton(TTrigger.RIGHT);
     }
 
-    public void overrideIntakeBall(boolean state) {
-        intakeBallOverrided = true;
-        intakeBallOverrideState = state;
-    }
-
-    public void unOverrideIntakeBall() {
-        intakeBallOverrided = false;
-    }
-
     public boolean getOutake() {
-        // True means outake
-        if (outakeOverrided) {
-            return outakeOverrideState;
-        }
         return driverController.getButton(TTrigger.LEFT);
-    }
-
-    public void overrideOutake(boolean state) {
-        outakeOverrided = true;
-        outakeOverrideState = state;
-    }
-
-    public void unOverrideOutake() {
-        outakeOverrided = false;
     }
 
     public boolean getBottomOutake() {
@@ -200,7 +180,7 @@ public class OI extends TOi {
         speedPidToggle.updatePeriodic();
         driverRumble.updatePeriodic();
         operatorRumble.updatePeriodic();
-        //intakeDeploy.updatePeriodic();
+        cameraToggle.updatePeriodic();
 
         // Update all SmartDashboard values
         SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());

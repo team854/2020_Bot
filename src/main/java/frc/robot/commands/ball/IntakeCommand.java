@@ -7,14 +7,10 @@ import frc.robot.Robot;
 public class IntakeCommand extends TSafeCommand {
 
     private static final String COMMAND_NAME = IntakeCommand.class.getSimpleName();
-    private boolean deployState;
-    private boolean intakeState;
 
-    public IntakeCommand(boolean deployState, boolean intakeState) {
-        super(TConst.NO_COMMAND_TIMEOUT, Robot.oi);
+    public IntakeCommand(double timeout) {
+        super(timeout, Robot.oi);
         requires(Robot.ballSubsystem);
-        this.deployState = deployState;
-        this.intakeState = intakeState;
     }
 
     @Override
@@ -27,24 +23,21 @@ public class IntakeCommand extends TSafeCommand {
     
     @Override
     protected void initialize() {
-        // TODO: Fix this
-        //Robot.oi.setIntakeDeploy(deployState);
-        Robot.oi.overrideIntakeBall(intakeState);
     }
-
+    
     @Override
     protected void execute() {
+        Robot.ballSubsystem.setIntakeState(true);  // Arm will also push down
     }
 
     @Override
     protected boolean isFinished() {
-        return true;
+        return super.isFinished();
     }
 
     @Override
     protected void end() {
-        // TODO: Do we have to enable motors here?
-
+        Robot.ballSubsystem.setIntakeState(false);
     }
 
 }

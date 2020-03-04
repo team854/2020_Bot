@@ -89,7 +89,7 @@ public class AutonomousCommand extends CommandGroup {
             case AutoSelector.PATTERN_PICKUP_SCORE:
                 switch (robotStartPosition) {
                     case AutoSelector.ROBOT_RIGHT_EDGE:
-                        addParallel(new IntakeCommand(true, true));
+                        addParallel(new IntakeCommand(5));
                         // Pickup two balls
                         addSequential(new TDriveOnHeadingDistanceCommand(162, 0, 0.5, 5, true,
                                             Robot.oi, Robot.driveSubsystem));

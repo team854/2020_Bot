@@ -5,7 +5,7 @@ import com.torontocodingcollective.commands.TDifferentialDrive;
 import com.torontocodingcollective.oi.TStick;
 import com.torontocodingcollective.oi.TStickPosition;
 import com.torontocodingcollective.speedcontroller.TSpeeds;
-
+import frc.robot.subsystems.CameraSubsystem.Camera;
 import frc.robot.Robot;
 import frc.robot.RobotConst;
 import frc.robot.oi.OI;
@@ -150,6 +150,13 @@ public class DefaultDriveCommand extends TDefaultDriveCommand {
             motorSpeeds.left    *= RobotConst.OPERATOR_SPEED_PERCENT;
             motorSpeeds.right   *= RobotConst.OPERATOR_SPEED_PERCENT;
         }*/
+
+        // Invert the drive if the operator is controlling and they're using the back camera
+        if (operatorControlling && Robot.cameraSubsystem.getCurrentCamera() == Camera.REAR) {
+            double temp = motorSpeeds.right;
+            motorSpeeds.right = -motorSpeeds.left;
+            motorSpeeds.left = -temp;
+        }
 
         driveSubsystem.setSpeed(motorSpeeds);
     }
