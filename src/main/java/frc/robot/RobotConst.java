@@ -54,8 +54,9 @@ public class RobotConst {
     };
     
     // Number of color sections to rotate through on the CP
-    public static final int CP_SECTIONS = 26;  // Two more sections than 3 perfect rotations
-    public static final double CP_SPIN_SPEED = 0.33;
+    public static final int CP_SECTIONS             = 26;  // Two more sections than 3 perfect rotations
+    public static final double CP_SPIN_SPEED        = 0.33;
+    public static final double CP_SLOW_SPIN_SPEED   = 0.25;
 
     // The TorontoCodingCollective framework was developed to run on different
     // robots through the use of multiple mappings and constants.
