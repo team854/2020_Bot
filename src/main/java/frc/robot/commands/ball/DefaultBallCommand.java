@@ -66,10 +66,9 @@ public class DefaultBallCommand extends TSafeCommand {
             Robot.ballSubsystem.setOutakeState(OutakeState.NO_OUTAKE);
         }
 
-        // Intake arm down happens if intaking as well, in setIntakeState()
-        if (Robot.oi.getIntakeDeployUp()) {
+        if (Robot.oi.getIntakeDeployToggle()) {
             Robot.ballSubsystem.setIntakeDeploySpeed(-1);
-        } else if (Robot.oi.getIntakeDeployDown()) {
+        } else {
             Robot.ballSubsystem.setIntakeDeploySpeed(1);
         }
     }

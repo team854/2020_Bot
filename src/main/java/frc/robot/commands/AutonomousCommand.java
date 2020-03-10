@@ -12,7 +12,9 @@ import frc.robot.commands.ball.IntakeCommand;
 import frc.robot.oi.AutoSelector;
 import frc.robot.commands.auto.AutoDelay;
 import com.torontocodingcollective.speedcontroller.TSpeeds;
+import com.torontocodingcollective.commands.gyroDrive.TDriveBackwardsOnHeadingCommand;
 import com.torontocodingcollective.commands.gyroDrive.TDriveBackwardsOnHeadingDistanceCommand;
+import frc.robot.subsystems.BallSubsystem.OutakeState;
 
 /**
  * AutonomousCommand
@@ -76,9 +78,13 @@ public class AutonomousCommand extends CommandGroup {
                         addSequential(new TDriveBackwardsOnHeadingDistanceCommand(84.75, 180, -0.5, 10, true,
                                                 Robot.oi, Robot.driveSubsystem));  // 84.75 inches before
                         addSequential(new AutoDelay(0.1));
-                        // Score
-                        addSequential(new OutakeCommand(2));
-                        //moveAcross();
+                        // Push a bit to counteract bounce
+                        addSequential(new TDriveBackwardsOnHeadingCommand(180, -0.20, 1, Robot.oi, Robot.driveSubsystem));
+                        // Score while pushing against the outake
+                        addParallel(new TDriveBackwardsOnHeadingCommand(180, -0.20, 2, Robot.oi, Robot.driveSubsystem));
+                        addSequential(new OutakeCommand(OutakeState.TOP_OUTAKE, 2));
+                        // Drive back
+                        //addSequential(new TDriveOnHeadingDistanceCommand(95, 0, 0.5, 10, true, Robot.oi, Robot.driveSubsystem));
                         break;
                     case AutoSelector.ROBOT_RIGHT_EDGE:
                         break;
@@ -103,7 +109,7 @@ public class AutonomousCommand extends CommandGroup {
                                             Robot.oi, Robot.driveSubsystem));
                         addSequential(new AutoDelay(0.1));
                         // Score
-                        addSequential(new OutakeCommand(2));
+                        addSequential(new OutakeCommand(OutakeState.TOP_OUTAKE, 2));
                         moveAcross();
                         break;
                 }
@@ -113,8 +119,15 @@ public class AutonomousCommand extends CommandGroup {
                     case AutoSelector.ROBOT_LEFT:
                     
                 }
+            case AutoSelector.PATTERN_MOVE:
+                addSequential(new TDriveOnHeadingDistanceCommand(30, 0, 0.5, 5, true, Robot.oi, Robot.driveSubsystem));
+                break;
+            case AutoSelector.PATTERN_FEED:
+                //addSequential(new AutoDelay(0));
+                addSequential(new OutakeCommand(OutakeState.BOTTOM_OUTAKE, 4));
+                addSequential(new TDriveOnHeadingDistanceCommand(30, 0, 0.5, 5, true, Robot.oi, Robot.driveSubsystem));
+                break;
         }
-
     }
 
     private void moveAcross() {

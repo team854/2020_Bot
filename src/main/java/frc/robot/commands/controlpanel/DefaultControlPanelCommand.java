@@ -4,6 +4,7 @@ import frc.robot.subsystems.ControlPanelSubsystem;
 import com.torontocodingcollective.TConst;
 import com.torontocodingcollective.commands.TSafeCommand;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 
 
@@ -61,6 +62,8 @@ public class DefaultControlPanelCommand extends TSafeCommand {
     @Override
     protected void execute() {
 
+        SmartDashboard.putNumber("CP Sections", numColors);
+
         // Pressing the manual button should override anything else that's happening
         if (Robot.oi.getCPManualSpin()) {
             state = State.MANUAL;
@@ -106,7 +109,8 @@ public class DefaultControlPanelCommand extends TSafeCommand {
                     // Set targetColor based on gameColor
                     gameColor = Robot.controlPanelSubsystem.getSpecifiedTargetColor();
                     if (gameColor == ControlPanelSubsystem.BLUE_TARGET) {
-                        targetColor = ControlPanelSubsystem.RED_TARGET;
+                        //targetColor = ControlPanelSubsystem.RED_TARGET;
+                        targetColor = ControlPanelSubsystem.UNKNOWN_TARGET;
                     } else if (gameColor == ControlPanelSubsystem.GREEN_TARGET) {
                         targetColor = ControlPanelSubsystem.YELLOW_TARGET;
                     } else if (gameColor == ControlPanelSubsystem.RED_TARGET) {
@@ -115,6 +119,7 @@ public class DefaultControlPanelCommand extends TSafeCommand {
                         targetColor = ControlPanelSubsystem.GREEN_TARGET;
                     }
                     Robot.controlPanelSubsystem.setMotorSpeed(RobotConst.CP_SPIN_SPEED);
+                    reversing = false;
                     state = State.FINDING_COLOR;
                 } else {
                     // No colors from the FMS yet
@@ -140,8 +145,10 @@ public class DefaultControlPanelCommand extends TSafeCommand {
                     // Go back/forward and find it again
                     if (reversing) {
                         state = State.FINDING_COLOR_FORWARD;
+                        logMessage("Slowly going forward to find color");
                     } else {
                         state = State.FINDING_COLOR_REVERSE;
+                        logMessage("Slowly reversing to find color");
                     }
                 }
                 break;

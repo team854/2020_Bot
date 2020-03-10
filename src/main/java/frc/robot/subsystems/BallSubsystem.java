@@ -81,7 +81,7 @@ public class BallSubsystem extends TSubsystem {
             setOutakeSpeed(0.33);  // Outake motors spin backwards while intaking
             setIntakeWheelsSpeed(-1);
             setIntakeCordsSpeed(0.33);
-            setIntakeDeploySpeed(1);  // Push arm down when intaking
+            //setIntakeDeploySpeed(1);  // Push arm down when intaking
         } else {
             setIntakeWheelsSpeed(0);
             setIntakeCordsSpeed(0);

@@ -14,7 +14,7 @@ public class RobotConst {
 
     public static final double  DRIVE_GYRO_PID_KP;
     public static final double  DRIVE_GYRO_PID_KI;
-    public static final double  DRIVE_MAX_ROTATION_OUTPUT     = 0.70;
+    public static final double  DRIVE_MAX_ROTATION_OUTPUT     = 0.50;
 
     public static final double  DRIVE_SPEED_PID_KP;
     public static final double  DRIVE_SPEED_PID_KI;
@@ -54,7 +54,7 @@ public class RobotConst {
     };
     
     // Number of color sections to rotate through on the CP
-    public static final int CP_SECTIONS             = 26;  // Two more sections than 3 perfect rotations
+    public static final int CP_SECTIONS             = 35;  // Two more sections than 3 perfect rotations, with each red seciton counting as two
     public static final double CP_SPIN_SPEED        = 0.33;
     public static final double CP_SLOW_SPIN_SPEED   = 0.25;
 

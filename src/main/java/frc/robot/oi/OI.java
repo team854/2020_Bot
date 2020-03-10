@@ -44,6 +44,8 @@ public class OI extends TOi {
 
     private DriveSelector   driveSelector       = new DriveSelector();
 
+    private TToggle intakeDeployToggle = new TToggle();
+
     private TToggle cameraToggle = new TToggle(operatorController, TButton.A);
 
     public Camera getCamera() {
@@ -119,18 +121,24 @@ public class OI extends TOi {
 
         // True is front
         cameraToggle.set(true);
+        // True is up
+        intakeDeployToggle.set(true);
     }
 
     public void setSpeedPidEnabled(boolean state) {
         speedPidToggle.set(state);
     }
 
-    public boolean getIntakeDeployUp() {
+    /*public boolean getIntakeDeployUp() {
         return driverController.getButton(TButton.LEFT_BUMPER);
     }
 
     public boolean getIntakeDeployDown() {
         return driverController.getButton(TButton.RIGHT_BUMPER);
+    }*/
+
+    public boolean getIntakeDeployToggle() {
+        return intakeDeployToggle.get();
     }
 
     public boolean getIntakeBall() {
@@ -181,6 +189,8 @@ public class OI extends TOi {
         driverRumble.updatePeriodic();
         operatorRumble.updatePeriodic();
         cameraToggle.updatePeriodic();
+        intakeDeployToggle.updatePeriodic(driverController.getButton(TButton.LEFT_BUMPER) || 
+                                            driverController.getButton(TButton.RIGHT_BUMPER));
 
         // Update all SmartDashboard values
         SmartDashboard.putBoolean("Speed PID Toggle", getSpeedPidEnabled());

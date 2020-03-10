@@ -6,6 +6,7 @@ import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.camera.DefaultCameraCommand;
 
 /**
  *
@@ -21,11 +22,6 @@ public class CameraSubsystem extends TSubsystem {
 	private Camera curCamera = Camera.NONE;
 
     public CameraSubsystem() {
-
-        //Uncomment this line to start a USB camera feed
-        UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-        camera.setVideoMode(PixelFormat.kMJPEG, 120, 90, 50);
-        camera.setExposureManual(40);
 
          // Switchable camera feed
          
@@ -114,6 +110,7 @@ public class CameraSubsystem extends TSubsystem {
 
     @Override
     protected void initDefaultCommand() {
+		setDefaultCommand(new DefaultCameraCommand());
     }
 
 }

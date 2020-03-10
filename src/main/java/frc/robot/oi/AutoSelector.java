@@ -19,6 +19,8 @@ public class AutoSelector {
     public static final String  PATTERN_PICKUP_SCORE    = "Pickup then score";
     public static final String  PATTERN_PICKUP_OPP_CP   = "Pickup oppositions CP Ball"; // new auto to code
     public static final String  PATTERN_NOTHING         = "Do nothing";
+    public static final String  PATTERN_MOVE            = "Move off the line";
+    public static final String  PATTERN_FEED            = "Feed partner";
 
     public static SendableChooser<String> delayTime;
     
@@ -47,6 +49,8 @@ public class AutoSelector {
         pattern.addOption(PATTERN_PICKUP_SCORE, PATTERN_PICKUP_SCORE);
         pattern.addOption(PATTERN_NOTHING, PATTERN_NOTHING);
         pattern.addOption(PATTERN_PICKUP_OPP_CP, PATTERN_PICKUP_OPP_CP);
+        pattern.addOption(PATTERN_MOVE, PATTERN_MOVE);
+        pattern.addOption(PATTERN_FEED, PATTERN_FEED);
 
         SmartDashboard.putData("Auto Pattern", pattern);
 

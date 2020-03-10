@@ -8,9 +8,11 @@ import frc.robot.subsystems.BallSubsystem.OutakeState;
 public class OutakeCommand extends TSafeCommand {
 
     private static final    String  COMMAND_NAME    = OutakeCommand.class.getSimpleName();
+    private OutakeState state;
 
-    public OutakeCommand(double timeout) {
+    public OutakeCommand(OutakeState state, double timeout) {
         super(timeout, Robot.oi);
+        this.state = state;
         requires(Robot.ballSubsystem);
     }
 
@@ -27,7 +29,7 @@ public class OutakeCommand extends TSafeCommand {
 
     @Override
     protected void execute() {
-        Robot.ballSubsystem.setOutakeState(OutakeState.TOP_OUTAKE);
+        Robot.ballSubsystem.setOutakeState(state);
     }
 
     @Override
